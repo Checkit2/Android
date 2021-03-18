@@ -6,25 +6,27 @@ import android.util.AttributeSet;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.AppCompatTextView;
+import androidx.appcompat.widget.AppCompatEditText;
 
-public class BoldTextView extends AppCompatTextView {
-    public BoldTextView(@NonNull Context context) {
+public class CustomEditText extends AppCompatEditText {
+    public CustomEditText(@NonNull Context context) {
         super(context);
         setFont(context);
+
     }
 
-    public BoldTextView(@NonNull Context context, @Nullable AttributeSet attrs) {
+    public CustomEditText(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         setFont(context);
     }
 
-    public BoldTextView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public CustomEditText(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         setFont(context);
+
     }
     private void setFont(Context context) {
-        Typeface typeface = Typeface.createFromAsset(context.getAssets(), "fonts/IRANYekanMobileBold.ttf");
+        Typeface typeface = Typeface.createFromAsset(context.getAssets(), "fonts/IRANYekanMobileRegular.ttf");
         setTypeface(typeface);
     }
 }

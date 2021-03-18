@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.LoginActivity"
+    android:background="@color/white"
+    android:layoutDirection="rtl"
+    android:windowSoftInputMode="adjustResize"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="20sp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="30dp">
+
+
+        <ir.Peaky.checkit.utils.BoldTextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:text="@string/login_title"
+            android:textColor="@color/title_color"
+            android:textStyle="bold"
+            android:id="@+id/title"/>
+
+        <ir.Peaky.checkit.utils.RegularTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/login_msg"
+            android:layout_below="@id/title"
+            android:textSize="14sp"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/description_color"
+            android:id="@+id/msg"/>
+
+        <ir.Peaky.checkit.utils.BoldTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/phone_number"
+            android:layout_below="@id/msg"
+            android:textColor="@color/title_color"
+            android:textSize="17sp"
+            android:layout_marginTop="15dp"
+            android:textStyle="bold"
+            android:id="@+id/phone_number"/>
+
+        <ir.Peaky.checkit.utils.CustomEditText
+            android:textColorHint="@color/button_def"
+            android:hint="@string/example_phone"
+            android:padding="15dp"
+            android:textAlignment="textEnd"
+            android:id="@+id/edt_phone_number"
+            android:inputType="phone"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:layout_below="@id/phone_number"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/custom_input"
+            android:textSize="14sp"
+            android:textColor="@color/title_color"/>
+
+        <RelativeLayout
+            android:id="@+id/rel_error"
+            android:visibility="invisible"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/edt_phone_number"
+            android:layout_marginTop="5dp">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_danger"
+                android:id="@+id/danger_icon"/>
+
+            <ir.Peaky.checkit.utils.RegularTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:text="شماره موبایل نامعتبر است!"
+                android:textColor="@color/red_error"
+                android:layout_toEndOf="@id/danger_icon"
+                android:layout_marginStart="7dp"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/rel_bottom"
+            android:layout_marginBottom="20dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <androidx.appcompat.widget.AppCompatCheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/checkbox"
+                    android:checked="true"
+                    android:buttonTint="@color/main"
+                    />
+
+                <ir.Peaky.checkit.utils.RegularTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:textColor="@color/main"
+                    android:textAlignment="center"
+                    android:text="@string/rules"
+                    android:id="@+id/rules"/>
+
+            </LinearLayout>
+
+
+
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_marginBottom="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/rel_bottom"
+            android:layout_alignParentBottom="true">
+
+
+            <RelativeLayout
+                android:id="@+id/button"
+                android:layout_width="match_parent"
+                android:layout_height="65dp"
+                android:background="@drawable/button_def">
+
+                <ir.Peaky.checkit.utils.BoldTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/login_in_app"
+                    android:layout_centerInParent="true"
+                    android:textSize="17sp"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"/>
+
+            </RelativeLayout>
+
+
+        </RelativeLayout>
+
+
+
+
+
+
+
+
+    </RelativeLayout>
+
+
+
+
+
+</RelativeLayout>

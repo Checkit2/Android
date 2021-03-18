@@ -1,3 +1,14 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">چک کیت</string>
+    <string name="login_title">به چک کیت خوش آمدید</string>
+    <string name="login_msg">لطفا برای ذخیره آزمایش ها لطفا شماره موبایل خود را وارد کنید
+        <br></br>
+        هیچگونه برای پیامکی براتون ارسال نخواهد شد
+    </string>
+    <string name="phone_number">شماره موبایل</string>
+    <string name="login_in_app">ورود به برنامه</string>
+    <string name="rules"> <u>قوانین و مقررات</u> را خوانده و موافقم</string>
+    <string name="example_phone">مثلا 09123456789</string>
+
+
 </resources>
