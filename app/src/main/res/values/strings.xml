@@ -9,6 +9,10 @@
     <string name="login_in_app">ورود به برنامه</string>
     <string name="rules"> <u>قوانین و مقررات</u> را خوانده و موافقم</string>
     <string name="example_phone">مثلا 09123456789</string>
+    <string name="network_error">اینترنت شما وصل نیست</string>
+    <string name="error_msg">لطفا وضعیت اتصال به اینترنت را بررسی کنید و
+        <br></br>
+        مجددا تلاش کنید</string>
 
 
 </resources>

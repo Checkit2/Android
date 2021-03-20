@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="wrap_content" android:layoutDirection="rtl"
+    android:background="@color/white"
+
+    >
+
+
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_antenna"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+       android:id="@+id/antenna"
+        />
+
+    <ir.Peaky.checkit.utils.BoldTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/antenna"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/title_color"
+        android:layout_centerHorizontal="true"
+        android:text="@string/network_error"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:id="@+id/title_error"/>
+
+    <ir.Peaky.checkit.utils.RegularTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/title_color"
+        android:layout_below="@id/title_error"
+        android:text="@string/error_msg"
+        android:id="@+id/msg_error"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"/>
+
+    <RelativeLayout
+        android:id="@+id/rel_try"
+        android:layout_width="match_parent"
+        android:layout_height="58dp"
+        android:layout_below="@id/msg_error"
+        android:layout_marginTop="20dp"
+        android:background="@color/main">
+
+        <ir.Peaky.checkit.utils.BoldTextView
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:text="تلاش مجدد"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="10dp"/>
+
+    </RelativeLayout>
+
+
+
+
+</RelativeLayout>
