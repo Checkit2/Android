@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import ir.Peaky.checkit.MainActivity;
 import ir.Peaky.checkit.R;
+import ir.Peaky.checkit.config.PrefManager;
 import ir.Peaky.checkit.utils.CustomEditText;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
@@ -26,6 +27,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     RelativeLayout relError;
     String txtPhoneNumber="";
     AppCompatCheckBox checkBox;
+    PrefManager prefManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +35,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_login);
         statusbarColor();
         init();
+        prefManager=new PrefManager(getApplicationContext());
         checkBox.setChecked(false);
         edtPhoneNumber.addTextChangedListener(new TextWatcher() {
             @Override
@@ -92,6 +95,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 } else {
                     edtPhoneNumber.setBackground(getResources().getDrawable(R.drawable.custom_input));
                     relError.setVisibility(View.INVISIBLE);
+                    prefManager.setLogin(true);
+                    prefManager.setPhoneNumber(txtPhoneNumber);
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(intent);
                     finish();

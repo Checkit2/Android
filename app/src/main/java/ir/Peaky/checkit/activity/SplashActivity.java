@@ -14,15 +14,19 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import ir.Peaky.checkit.MainActivity;
 import ir.Peaky.checkit.R;
+import ir.Peaky.checkit.config.PrefManager;
 
 public class SplashActivity extends AppCompatActivity {
     Dialog dialog;
+    PrefManager prefManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+        prefManager=new PrefManager(getApplicationContext());
         RelativeLayout relRetry;
         dialog = new Dialog(SplashActivity.this);
         dialog.setContentView(R.layout.internet_dialog);
@@ -45,9 +49,16 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void run() {
                 if (isNetworkAvailable(getApplicationContext())) {
-                    Intent intent=new Intent(getApplicationContext(),LoginActivity.class);
-                    startActivity(intent);
-                    finish();
+                    if (prefManager.isLogin()){
+                        Intent intent=new Intent(getApplicationContext(), MainActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }else {
+                        Intent intent=new Intent(getApplicationContext(), LoginActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+
 
                 } else {
                     dialog.show();
