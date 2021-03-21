@@ -5,7 +5,111 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:background="@color/white">
+    android:background="@color/white"
+    android:layoutDirection="rtl">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:id="@+id/topBar"
+        >
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_menu"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="20dp"
+            android:id="@+id/icon_menu"/>
+
+        <ir.Peaky.checkit.utils.BoldTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@id/icon_menu"
+            android:textColor="@color/title_color"
+            android:layout_marginStart="35dp"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_above="@id/rel_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/rel_main"
+       >
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_camera"
+            android:layout_centerInParent="true"
+            android:id="@+id/icon_camera"/>
+
+        <ir.Peaky.checkit.utils.BoldTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/main"
+            android:text="@string/add_new_check"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_below="@id/icon_camera"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="13dp"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_marginStart="20dp"
+        android:visibility="gone"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:id="@+id/rel_bottom"
+        android:layout_marginEnd="20dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <ir.Peaky.checkit.utils.BoldTextView
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/last_experiments"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="@color/title_color"/>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_arrow_left"
+                android:layout_alignParentEnd="true"
+                android:id="@+id/arrow_left"
+                android:layout_centerVertical="true"/>
+
+            <ir.Peaky.checkit.utils.RegularTextView
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toStartOf="@id/arrow_left"
+                android:text="@string/see_all"
+                android:textColor="@color/green"
+                android:textSize="14sp"/>
+
+
+
+        </RelativeLayout>
+
+
+
+
+    </RelativeLayout>
 
 
 

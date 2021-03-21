@@ -1,7 +1,9 @@
 package ir.Peaky.checkit.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatCheckBox;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
@@ -12,6 +14,7 @@ import android.view.WindowManager;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import ir.Peaky.checkit.MainActivity;
 import ir.Peaky.checkit.R;
 import ir.Peaky.checkit.utils.CustomEditText;
 
@@ -21,13 +24,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     CustomEditText edtPhoneNumber;
     RelativeLayout relButton;
     RelativeLayout relError;
-    String txtPhoneNumber;
+    String txtPhoneNumber="";
+    AppCompatCheckBox checkBox;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         statusbarColor();
         init();
+        checkBox.setChecked(false);
         edtPhoneNumber.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -36,12 +42,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                txtPhoneNumber= String.valueOf(edtPhoneNumber.getText());
-                //.makeText(LoginActivity.this, "text", Toast.LENGTH_SHORT).show();
-                if (txtPhoneNumber.length()==11){
+                txtPhoneNumber = String.valueOf(edtPhoneNumber.getText());
+                if ((txtPhoneNumber.length() == 11) && (checkBox.isChecked())) {
                     relButton.setBackgroundDrawable(getResources().getDrawable(R.drawable.button));
 
-                }else
+                } else
                     relButton.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_def));
 
             }
@@ -52,20 +57,21 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             }
         });
         relButton.setOnClickListener(this);
-
-
-
+        checkBox.setOnClickListener(this);
 
 
     }
-    private void init(){
-        edtPhoneNumber=findViewById(R.id.edt_phone_number);
-        relButton=findViewById(R.id.button);
-        relError=findViewById(R.id.rel_error);
+
+    private void init() {
+        edtPhoneNumber = findViewById(R.id.edt_phone_number);
+        relButton = findViewById(R.id.button);
+        relError = findViewById(R.id.rel_error);
+        checkBox = findViewById(R.id.checkbox);
     }
-    public void statusbarColor(){
-        if (Build.VERSION.SDK_INT>=21){
-            window=this.getWindow();
+
+    public void statusbarColor() {
+        if (Build.VERSION.SDK_INT >= 21) {
+            window = this.getWindow();
             window.setStatusBarColor(getResources().getColor(R.color.white));
             view = getWindow().getDecorView();
             view.setSystemUiVisibility(view.getSystemUiVisibility() | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
@@ -74,19 +80,32 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.button:
-                if (!txtPhoneNumber.matches("(\\+98|0)?9\\d{9}")){
+                if ((txtPhoneNumber == null) || !txtPhoneNumber.matches("(\\+98|0)?9\\d{9}")) {
                     edtPhoneNumber.setBackground(getResources().getDrawable(R.drawable.input_error));
                     relError.setVisibility(View.VISIBLE);
+                    break;
 
-            }else{
+                } else if (!checkBox.isChecked()) {
+                    Toast.makeText(this, "لطفا قوانین و مقررات خوانده و قبول نمایید", Toast.LENGTH_SHORT).show();
+                } else {
                     edtPhoneNumber.setBackground(getResources().getDrawable(R.drawable.custom_input));
                     relError.setVisibility(View.INVISIBLE);
+                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    startActivity(intent);
+                    finish();
                 }
                 break;
+            case R.id.checkbox:
+                if (checkBox.isChecked() && ((txtPhoneNumber.length() == 11))) {
+                    relButton.setBackgroundDrawable(getResources().getDrawable(R.drawable.button));
 
+                } else
+                    relButton.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_def));
 
         }
+
+
     }
 }
