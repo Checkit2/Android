@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         iconImagePicker.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                bottomSheetDialog=new BottomSheetDialog(MainActivity.this,R.style.BottomSheetTheme);
+                bottomSheetDialog=new BottomSheetDialog(MainActivity.this,R.style.SheetDialog);
                 View sheetView= LayoutInflater.from(getApplicationContext()).inflate(R.layout.bottom_sheet_layout,
                         (LinearLayout) findViewById(R.id.bottom_sheet));
                 bottomSheetDialog.setContentView(sheetView);
