@@ -17,4 +17,5 @@
     <color name="red_error">#FF3B3B</color>
     <color name="button_pressed">#5B8DEF</color>
     <color name="green">#39D98A</color>
+    <color name="transparent">#fff</color>
 </resources>

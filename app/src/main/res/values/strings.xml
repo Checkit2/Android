@@ -17,6 +17,9 @@
     <string name="add_new_check">افزودن آزمایش جدید</string>
     <string name="last_experiments">آخرین آزمایش ها</string>
     <string name="see_all">مشاهده همه</string>
+    <string name="choose_photo">انتخاب عکس</string>
+    <string name="camera">دوربین</string>
+    <string name="gallery">گالری</string>
 
 
 </resources>
