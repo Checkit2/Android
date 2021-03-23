@@ -2,9 +2,9 @@
     <string name="app_name">چک کیت</string>
     <string name="app_name_english">Chekit</string>
     <string name="login_title">به چک کیت خوش آمدید</string>
-    <string name="login_msg">لطفا برای ذخیره آزمایش ها لطفا شماره موبایل خود را وارد کنید
+    <string name="login_msg">لطفا برای ذخیره آزمایش ها شماره موبایل خود را وارد کنید
         <br></br>
-        هیچگونه برای پیامکی براتون ارسال نخواهد شد
+        هیچگونه پیامکی برای شما ارسال نخواهد شد
     </string>
     <string name="phone_number">شماره موبایل</string>
     <string name="login_in_app">ورود به برنامه</string>
@@ -20,6 +20,8 @@
     <string name="choose_photo">انتخاب عکس</string>
     <string name="camera">دوربین</string>
     <string name="gallery">گالری</string>
+    <string name="help">راهنما</string>
+    <string name="about_us">درباره ما</string>
 
 
 </resources>
