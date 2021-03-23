@@ -6,6 +6,7 @@ import androidx.appcompat.widget.AppCompatImageView;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -18,6 +19,8 @@ import android.widget.Toast;
 
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.navigation.NavigationView;
+
+import ir.Peaky.checkit.activity.NewExperimentActivity;
 
 public class MainActivity extends AppCompatActivity {
     Window window;
@@ -46,7 +49,11 @@ public class MainActivity extends AppCompatActivity {
                 int id=item.getItemId();
                 switch (id){
                     case R.id.help:
-                        Toast.makeText(MainActivity.this, "Help", Toast.LENGTH_SHORT).show();
+                        drawerLayout.closeDrawer(GravityCompat.START);
+                        break;
+                    case R.id.about_us:
+                        drawerLayout.closeDrawer(GravityCompat.START);
+                        break;
                 }
                 return false;
             }
@@ -58,8 +65,26 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 bottomSheetDialog=new BottomSheetDialog(MainActivity.this,R.style.SheetDialog);
                 View sheetView= LayoutInflater.from(getApplicationContext()).inflate(R.layout.bottom_sheet_layout,
-                        (LinearLayout) findViewById(R.id.bottom_sheet));
+                        findViewById(R.id.bottom_sheet));
                 bottomSheetDialog.setContentView(sheetView);
+                LinearLayout linCamera=sheetView.findViewById(R.id.lin_camera);
+                LinearLayout linGallery=sheetView.findViewById(R.id.lin_gallery);
+                linCamera.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent=new Intent(getApplicationContext(), NewExperimentActivity.class);
+                        intent.putExtra("camera",true);
+                        startActivity(intent);
+                    }
+                });
+                linGallery.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent=new Intent(getApplicationContext(), NewExperimentActivity.class);
+                        intent.putExtra("gallery",true);
+                        startActivity(intent);
+                    }
+                });
 
                 bottomSheetDialog.show();
             }
@@ -83,4 +108,6 @@ public class MainActivity extends AppCompatActivity {
             view.setSystemUiVisibility(view.getSystemUiVisibility() | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
         }
     }
+
+
 }

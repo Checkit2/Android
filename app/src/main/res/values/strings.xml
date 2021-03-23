@@ -22,6 +22,14 @@
     <string name="gallery">گالری</string>
     <string name="help">راهنما</string>
     <string name="about_us">درباره ما</string>
+    <string name="detail_new_experiment">جزئیات آزمایش جدید</string>
+    <string name="experiment_picture">عکس آزمایش</string>
+    <string name="title">عنوان</string>
+    <string name="hint_age_description">سن صاحب برگه آزمایش را وارد کنید</string>
+    <string name="age">سن</string>
+    <string name="type">نوع آزمایش</string>
+    <string name="scan">اسکن</string>
+    <string name="hint_title">یک عنوان برای ازمایش خود وارد کنید (اختیاری)</string>
 
 
 </resources>

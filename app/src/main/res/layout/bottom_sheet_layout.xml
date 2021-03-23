@@ -39,6 +39,7 @@
         android:orientation="horizontal">
 
         <RelativeLayout
+
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -65,7 +66,6 @@
 
     </LinearLayout>
     <LinearLayout
-
         android:id="@+id/lin_gallery"
         android:paddingStart="15dp"
         android:layout_width="match_parent"

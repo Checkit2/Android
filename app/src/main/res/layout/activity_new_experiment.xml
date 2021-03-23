@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.NewExperimentActivity"
+    android:layoutDirection="rtl"
+    android:paddingStart="20dp"
+    android:paddingEnd="20dp">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:id="@+id/topBar"
+        >
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_close"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            android:id="@+id/icon_close"/>
+
+        <ir.Peaky.checkit.utils.BoldTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/detail_new_experiment"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_centerVertical="true"
+            android:textColor="@color/title_color" />
+
+    </RelativeLayout>
+
+    <ir.Peaky.checkit.utils.BoldTextView
+        android:id="@+id/txt_pic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/experiment_picture"
+        android:textStyle="bold"
+        android:textColor="@color/title_color"
+        android:textSize="16sp"
+        android:layout_below="@id/topBar"
+        android:layout_marginTop="30dp"/>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_add_picture"
+        android:layout_below="@+id/txt_pic"
+        android:layout_marginTop="15dp"
+        android:id="@+id/img_pic"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/rel_title"
+        android:layout_below="@id/img_pic"
+        android:layout_marginTop="40dp">
+
+        <ir.Peaky.checkit.utils.BoldTextView
+            android:id="@+id/txt_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/title"
+            android:textStyle="bold"
+            android:textColor="@color/title_color"
+            android:textSize="16sp" />
+
+
+        <ir.Peaky.checkit.utils.CustomEditText
+            android:id="@+id/edt_title"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_below="@id/txt_title"
+            android:background="@drawable/custom_input"
+            android:textSize="14sp"
+            android:textColor="@color/title_color"
+            android:padding="15dp"
+            android:textAlignment="textStart"
+            android:textColorHint="@color/button_def"
+            android:hint="@string/hint_title"
+            />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/rel_age"
+        android:layout_below="@id/rel_title">
+
+        <ir.Peaky.checkit.utils.BoldTextView
+            android:id="@+id/txt_age"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/age"
+            android:textStyle="bold"
+            android:textColor="@color/title_color"
+            android:textSize="16sp"
+            />
+
+
+        <ir.Peaky.checkit.utils.CustomEditText
+            android:id="@+id/edt_age"
+            android:inputType="phone"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_below="@id/txt_age"
+            android:background="@drawable/custom_input"
+            android:textSize="14sp"
+            android:textColor="@color/title_color"
+            android:padding="15dp"
+            android:textAlignment="textEnd"
+            android:textColorHint="@color/button_def"
+            android:hint="@string/hint_age_description"
+            />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/rel_type"
+        android:layout_below="@id/rel_age">
+
+        <ir.Peaky.checkit.utils.BoldTextView
+            android:id="@+id/txt_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/type"
+            android:textStyle="bold"
+            android:textColor="@color/title_color"
+            android:textSize="16sp"
+            />
+
+
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="150dp"
+        android:layout_height="45dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/button_def"
+        android:layout_marginBottom="20dp">
+
+       <ir.Peaky.checkit.utils.RegularTextView
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="@string/scan"
+           android:textSize="16sp"
+           android:textColor="@color/white"
+           android:layout_centerInParent="true"/>
+
+    </RelativeLayout>
+
+
+
+</RelativeLayout>
