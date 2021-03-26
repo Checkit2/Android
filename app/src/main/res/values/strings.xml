@@ -30,6 +30,11 @@
     <string name="type">نوع آزمایش</string>
     <string name="scan">اسکن</string>
     <string name="hint_title">یک عنوان برای ازمایش خود وارد کنید (اختیاری)</string>
+    <string name="please_wait">لطفا صبر کنید</string>
+    <string name="description_wait">اسکن تصویر مدتی طول میکشد که به سرعت اینترنت
+        <br></br>
+        شما بستگی دارد</string>
+    <string name="scaning">در حال اسکن ...</string>
 
 
 </resources>

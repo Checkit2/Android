@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layoutDirection="rtl"
+    android:paddingStart="20dp"
+    android:paddingEnd="20dp"
+    tools:context=".activity.LoadingActivity">
+
+    <RelativeLayout
+        android:id="@+id/topBar"
+        android:layout_width="match_parent"
+        android:layout_height="56dp">
+
+
+        <ir.Peaky.checkit.utils.BoldTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="@string/please_wait"
+            android:textColor="@color/title_color"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+
+    <ir.Peaky.checkit.utils.RegularTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/topBar"
+        android:text="@string/description_wait"
+        android:textColor="@color/description_color"
+        android:textSize="14sp" />
+
+
+
+
+    <RelativeLayout
+        android:id="@+id/rel_animatiom"
+        android:layout_width="220dp"
+        android:layout_height="220dp"
+        android:layout_centerInParent="true">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_marginBottom="10dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/ic_lottie_background"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"/>
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            app:lottie_fileName="scan.json"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"/>
+
+    </RelativeLayout>
+
+
+    <ir.Peaky.checkit.utils.BoldTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textColor="@color/title_color"
+        android:textSize="20sp"
+        android:text="@string/scaning"
+        android:layout_below="@id/rel_animatiom"
+        android:layout_centerHorizontal="true"/>
+
+
+</RelativeLayout>
