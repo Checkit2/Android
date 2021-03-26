@@ -72,6 +72,8 @@
 
 
         <ir.Peaky.checkit.utils.CustomEditText
+            android:imeOptions="actionNext"
+            android:singleLine="true"
             android:id="@+id/edt_title"
             android:layout_marginTop="10dp"
             android:layout_width="match_parent"
@@ -107,8 +109,9 @@
 
 
         <ir.Peaky.checkit.utils.CustomEditText
+            android:imeOptions="actionDone"
             android:id="@+id/edt_age"
-            android:inputType="phone"
+            android:inputType="number"
             android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="60dp"
@@ -117,7 +120,7 @@
             android:textSize="14sp"
             android:textColor="@color/title_color"
             android:padding="15dp"
-            android:textAlignment="textEnd"
+            android:textAlignment="textStart"
             android:textColorHint="@color/button_def"
             android:hint="@string/hint_age_description"
             />
@@ -159,8 +162,9 @@
 
 
     <RelativeLayout
+        android:id="@+id/btn_scan"
         android:layout_width="150dp"
-        android:layout_height="45dp"
+        android:layout_height="60dp"
         android:layout_alignParentBottom="true"
         android:background="@drawable/button_def"
         android:layout_marginBottom="20dp">
