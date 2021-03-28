@@ -143,6 +143,7 @@ public class NewExperimentActivity extends AppCompatActivity {
             }
         } else if (requestCode == UCrop.REQUEST_CROP && resultCode == RESULT_OK) {
             Uri imageUriResultCrop = UCrop.getOutput(data);
+
             if (imageUriResultCrop != null) {
                 imageScan.setImageURI(imageUriResultCrop);
             }
@@ -166,8 +167,8 @@ public class NewExperimentActivity extends AppCompatActivity {
         UCrop.Options options = new UCrop.Options();
 
         //Compress type
-        //options.setCompressionQuality(70);
-        //options.setCompressionFormat(Bitmap.CompressFormat.PNG);
+        options.setCompressionQuality(70);
+        options.setCompressionFormat(Bitmap.CompressFormat.JPEG);
 
         //Ui
         options.setHideBottomControls(false);
