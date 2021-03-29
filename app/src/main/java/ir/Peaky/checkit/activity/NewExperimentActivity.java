@@ -5,12 +5,17 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatSpinner;
+import androidx.core.content.ContextCompat;
 
+import android.content.ContentResolver;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.provider.OpenableColumns;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -29,6 +34,8 @@ import java.util.Arrays;
 import ir.Peaky.checkit.R;
 import ir.Peaky.checkit.utils.CustomEditText;
 
+import static androidx.core.content.FileProvider.getUriForFile;
+
 public class NewExperimentActivity extends AppCompatActivity {
     Window window;
     View view;
@@ -38,8 +45,12 @@ public class NewExperimentActivity extends AppCompatActivity {
     String age = "";
     RelativeLayout btnScan;
     private final int CODE_IMG_GALLERY = 1;
+    public static final int REQUEST_IMAGE_CAPTURE = 0;
     private final String SAMPLE_CROP_IMG_NAME = "sampleCropImg";
+    public static String fileName;
+    private int IMAGE_COMPRESSION = 80;
 
+    private boolean lockAspectRatio = false, setBitmapMaxWidthHeight = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +70,7 @@ public class NewExperimentActivity extends AppCompatActivity {
 
 
             } else if (bundle.getBoolean("camera")) {
-
+                takeCameraImage();
             }
         } else {
             Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show();
@@ -147,8 +158,31 @@ public class NewExperimentActivity extends AppCompatActivity {
             if (imageUriResultCrop != null) {
                 imageScan.setImageURI(imageUriResultCrop);
             }
+        } else if(requestCode==REQUEST_IMAGE_CAPTURE && resultCode==RESULT_OK){
+            cropImage(getCacheImagePath(fileName));
         }
     }
+
+    private void cropImage(Uri sourceUri) {
+        Uri destinationUri = Uri.fromFile(new File(getCacheDir(), queryName(getContentResolver(), sourceUri)));
+        UCrop.Options options = new UCrop.Options();
+        options.setCompressionQuality(IMAGE_COMPRESSION);
+
+        options.withAspectRatio(3,4);
+        options.withMaxResultSize(800, 800);
+
+        options.setFreeStyleCropEnabled(true);
+        options.setToolbarTitle("ویرایش عکس");
+
+
+        if (setBitmapMaxWidthHeight)
+            options.withMaxResultSize(800, 800);
+
+        UCrop.of(sourceUri, destinationUri)
+                .withOptions(options)
+                .start(this);
+    }
+
 
     private void startCrop(@NonNull Uri uri) {
         String destinationFileName = SAMPLE_CROP_IMG_NAME;
@@ -177,7 +211,34 @@ public class NewExperimentActivity extends AppCompatActivity {
         //Colors
         options.setStatusBarColor(getResources().getColor(R.color.white));
         options.setToolbarColor(getResources().getColor(R.color.white));
-        options.setToolbarTitle("برش عکس");
+        options.setToolbarTitle("ویرایش عکس");
         return options;
+    }
+
+    private void takeCameraImage(){
+        fileName = System.currentTimeMillis() + ".jpg";
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, getCacheImagePath(fileName));
+        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+        }
+    }
+
+    private Uri getCacheImagePath(String fileName) {
+        File path = new File(getExternalCacheDir(), "camera");
+        if (!path.exists()) path.mkdirs();
+        File image = new File(path, fileName);
+        return getUriForFile(NewExperimentActivity.this, getPackageName() + ".provider", image);
+    }
+
+    private static String queryName(ContentResolver resolver, Uri uri) {
+        Cursor returnCursor =
+                resolver.query(uri, null, null, null, null);
+        assert returnCursor != null;
+        int nameIndex = returnCursor.getColumnIndex(OpenableColumns.DISPLAY_NAME);
+        returnCursor.moveToFirst();
+        String name = returnCursor.getString(nameIndex);
+        returnCursor.close();
+        return name;
     }
 }

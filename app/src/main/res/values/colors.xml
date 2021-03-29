@@ -18,4 +18,11 @@
     <color name="button_pressed">#5B8DEF</color>
     <color name="green">#39D98A</color>
     <color name="transparent">#fff</color>
+
+
+
+    <color name="ucrop_color_widget_background">#fff</color>
+    <color name="ucrop_color_widget_text">#3E7BFA</color>
+    <color name="ucrop_color_widget_active">#3E7BFA</color>
+    <color name="ucrop_color_active_controls_color">#3E7BFA</color>
 </resources>

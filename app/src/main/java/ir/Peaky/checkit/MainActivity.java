@@ -6,6 +6,7 @@ import androidx.appcompat.widget.AppCompatImageView;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.Manifest;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -19,6 +20,13 @@ import android.widget.Toast;
 
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.navigation.NavigationView;
+import com.karumi.dexter.Dexter;
+import com.karumi.dexter.MultiplePermissionsReport;
+import com.karumi.dexter.PermissionToken;
+import com.karumi.dexter.listener.PermissionRequest;
+import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
+
+import java.util.List;
 
 import ir.Peaky.checkit.activity.NewExperimentActivity;
 
@@ -72,9 +80,33 @@ public class MainActivity extends AppCompatActivity {
                 linCamera.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent intent=new Intent(getApplicationContext(), NewExperimentActivity.class);
-                        intent.putExtra("camera",true);
-                        startActivity(intent);
+                        Dexter.withContext(MainActivity.this).withPermissions(Manifest.permission.CAMERA,
+                                Manifest.permission.READ_EXTERNAL_STORAGE,
+                                Manifest.permission.READ_EXTERNAL_STORAGE).withListener(new MultiplePermissionsListener() {
+                            @Override
+                            public void onPermissionsChecked(MultiplePermissionsReport multiplePermissionsReport) {
+                                // check if all permissions are granted
+                                if (multiplePermissionsReport.areAllPermissionsGranted()) {
+                                    // do you work now
+                                    Intent intent=new Intent(getApplicationContext(), NewExperimentActivity.class);
+                                    intent.putExtra("camera",true);
+                                    startActivity(intent);
+                                }
+
+                                // check for permanent denial of any permission
+                                if (multiplePermissionsReport.isAnyPermissionPermanentlyDenied()) {
+                                    // permission is denied permenantly, navigate user to app settings
+                                    Toast.makeText(MainActivity.this, "برای گرفتن عکس نیاز به دسترسی دوربین است در غیر این صورت عکس را از گالری انتخاب کنید", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+
+                            @Override
+                            public void onPermissionRationaleShouldBeShown(List<PermissionRequest> list, PermissionToken permissionToken) {
+                                permissionToken.continuePermissionRequest();
+
+                            }
+                        }).onSameThread().check();
+
                     }
                 });
                 linGallery.setOnClickListener(new View.OnClickListener() {
