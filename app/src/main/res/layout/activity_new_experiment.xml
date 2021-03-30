@@ -57,6 +57,7 @@
                 android:layout_marginTop="30dp"/>
 
             <androidx.appcompat.widget.AppCompatImageView
+                android:scaleType="fitXY"
                 android:layout_width="75dp"
                 android:layout_height="75dp"
                 android:src="@drawable/ic_add_picture"

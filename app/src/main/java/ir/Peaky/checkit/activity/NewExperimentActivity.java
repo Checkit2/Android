@@ -40,7 +40,7 @@ public class NewExperimentActivity extends AppCompatActivity {
     Window window;
     View view;
     AppCompatSpinner spinner;
-    AppCompatImageView imageScan;
+    AppCompatImageView imageScan,closeIcon;
     CustomEditText edtAge;
     String age = "";
     RelativeLayout btnScan;
@@ -105,6 +105,14 @@ public class NewExperimentActivity extends AppCompatActivity {
             }
         });
 
+
+        closeIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
     }
 
 
@@ -113,6 +121,7 @@ public class NewExperimentActivity extends AppCompatActivity {
         edtAge = findViewById(R.id.edt_age);
         btnScan = findViewById(R.id.btn_scan);
         imageScan = findViewById(R.id.img_pic);
+        closeIcon = findViewById(R.id.icon_close);
     }
 
 
@@ -160,7 +169,8 @@ public class NewExperimentActivity extends AppCompatActivity {
             }
         } else if(requestCode==REQUEST_IMAGE_CAPTURE && resultCode==RESULT_OK){
             cropImage(getCacheImagePath(fileName));
-        }
+        }else
+            finish();
     }
 
     private void cropImage(Uri sourceUri) {

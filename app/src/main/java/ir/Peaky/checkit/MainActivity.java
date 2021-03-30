@@ -29,11 +29,13 @@ import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 import java.util.List;
 
 import ir.Peaky.checkit.activity.NewExperimentActivity;
+import ir.Peaky.checkit.utils.RegularTextView;
 
 public class MainActivity extends AppCompatActivity {
     Window window;
     View view;
     AppCompatImageView iconImagePicker,iconMenu;
+    RegularTextView txtVersionName;
     NavigationView navigationView;
     DrawerLayout drawerLayout;
     private BottomSheetDialog bottomSheetDialog;
@@ -50,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
                 drawerLayout.openDrawer(GravityCompat.START);
             }
         });
+ //       txtVersionName.setText(ApplicationManager.getVersionName(getApplicationContext()));
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -128,6 +131,7 @@ public class MainActivity extends AppCompatActivity {
         navigationView=findViewById(R.id.nav_view);
         drawerLayout=findViewById(R.id.drawer);
         iconMenu=findViewById(R.id.icon_menu);
+   //     txtVersionName=findViewById(R.id.txt_version_name);
     }
 
 

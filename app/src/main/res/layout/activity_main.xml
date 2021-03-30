@@ -129,7 +129,12 @@
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         app:itemTextColor="@color/title_color"
-        app:menu="@menu/main_menu" />
+        app:menu="@menu/main_menu" >
+
+
+
+
+    </com.google.android.material.navigation.NavigationView>
 
 
 
