@@ -132,7 +132,33 @@
         app:menu="@menu/main_menu" >
 
 
+        <RelativeLayout
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
+            <ir.Peaky.checkit.utils.RegularTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/txt"
+                android:textSize="16sp"
+
+                android:layout_alignParentBottom="true"
+                android:text=" ورژن : "
+                android:textColor="@color/title_color"/>
+
+            <ir.Peaky.checkit.utils.RegularTextView
+                android:textColor="@color/title_color"
+                android:id="@+id/txt_version_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/version"
+                android:layout_alignParentBottom="true"
+                android:textSize="16sp"
+                android:layout_toEndOf="@id/txt"
+                />
+
+        </RelativeLayout>
 
     </com.google.android.material.navigation.NavigationView>
 

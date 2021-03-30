@@ -29,6 +29,7 @@ import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 import java.util.List;
 
 import ir.Peaky.checkit.activity.NewExperimentActivity;
+import ir.Peaky.checkit.utils.ApplicationManager;
 import ir.Peaky.checkit.utils.RegularTextView;
 
 public class MainActivity extends AppCompatActivity {
@@ -52,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
                 drawerLayout.openDrawer(GravityCompat.START);
             }
         });
- //       txtVersionName.setText(ApplicationManager.getVersionName(getApplicationContext()));
+        txtVersionName.setText(ApplicationManager.getVersionName(getApplicationContext()));
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
