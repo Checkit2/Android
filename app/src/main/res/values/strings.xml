@@ -38,4 +38,18 @@
     <string name="version">version</string>
 
 
+    <string name="intro_title1">از برگه آزمایش عکس بگیرید</string>
+    <string name="intro_description1">اول از همه از برگه آزمایش عکس بگیرید</string>
+
+    <string name="intro_title2">اسکن برگه آزمایش</string>
+    <string name="intro_description2">حالا صبر کنید عکس برگه آزمایش اسکن بشه!</string>
+
+    <string name="intro_title3">نمایش نتیجه</string>
+    <string name="intro_description3">در اخر میتونی تحلیل آزمایشت رو دریافت کنی :)</string>
+
+
+    <string name="next">بعدی</string>
+    <string name="continue_txt">ادامه</string>
+
+
 </resources>

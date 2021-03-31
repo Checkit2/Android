@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
                 drawerLayout.openDrawer(GravityCompat.START);
             }
         });
-        txtVersionName.setText(ApplicationManager.getVersionName(getApplicationContext()));
+        txtVersionName.setText(ApplicationManager.getVersionName(MainActivity.this));
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -132,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
         navigationView=findViewById(R.id.nav_view);
         drawerLayout=findViewById(R.id.drawer);
         iconMenu=findViewById(R.id.icon_menu);
-   //     txtVersionName=findViewById(R.id.txt_version_name);
+        txtVersionName=findViewById(R.id.txt_version_name);
     }
 
 

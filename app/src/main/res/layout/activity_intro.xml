@@ -4,15 +4,31 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.IntroActivity">
+    tools:context=".activity.IntroActivity"
+    android:background="@color/white"
+
+    android:layoutDirection="ltr">
 
     <androidx.viewpager.widget.ViewPager
+        app:tabIndicatorHeight="0dp"
+        android:id="@+id/viewpager"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
 
-
     </androidx.viewpager.widget.ViewPager>
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tab_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/rel_bottom"
+        android:layout_marginBottom="150dp"
+        android:layout_centerHorizontal="true"
+       app:tabBackground="@drawable/indicator_selector">
+
+
+    </com.google.android.material.tabs.TabLayout>
 
     <RelativeLayout
         android:layout_marginBottom="20dp"
@@ -25,20 +41,42 @@
 
 
        <RelativeLayout
+           android:id="@+id/btn_go"
            android:layout_width="match_parent"
            android:layout_height="65dp"
            android:background="@drawable/button">
 
            <ir.Peaky.checkit.utils.BoldTextView
+               android:id="@+id/txt_next"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
-               android:text="ادامه"
+               android:text="@string/next"
                android:layout_centerInParent="true"
                android:textSize="21sp"
                android:textColor="@color/white"
                android:textStyle="bold"/>
 
        </RelativeLayout>
+
+        <RelativeLayout
+            android:visibility="invisible"
+            android:id="@+id/btn_start"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:background="@drawable/button">
+
+            <ir.Peaky.checkit.utils.BoldTextView
+                android:id="@+id/txt_start"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/continue_txt"
+                android:layout_centerInParent="true"
+                android:textSize="21sp"
+                android:textColor="@color/white"
+                android:textStyle="bold"/>
+
+        </RelativeLayout>
+
 
 
     </RelativeLayout>

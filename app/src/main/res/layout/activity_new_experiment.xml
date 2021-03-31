@@ -6,6 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".activity.NewExperimentActivity"
     android:layoutDirection="rtl"
+    android:background="@color/white"
+
     android:paddingStart="20dp"
     android:paddingEnd="20dp">
 
