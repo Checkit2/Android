@@ -48,8 +48,8 @@ public class NewExperimentActivity extends AppCompatActivity {
     public static final int REQUEST_IMAGE_CAPTURE = 0;
     private final String SAMPLE_CROP_IMG_NAME = "sampleCropImg";
     public static String fileName;
-    private int IMAGE_COMPRESSION = 80;
-
+    private int IMAGE_COMPRESSION = 60;
+    Uri imageUriResultCrop;
     private boolean lockAspectRatio = false, setBitmapMaxWidthHeight = false;
 
     @Override
@@ -101,7 +101,8 @@ public class NewExperimentActivity extends AppCompatActivity {
         btnScan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                if (!age.isEmpty()){
+                }
             }
         });
 
@@ -162,7 +163,7 @@ public class NewExperimentActivity extends AppCompatActivity {
                 startCrop(imageUri);
             }
         } else if (requestCode == UCrop.REQUEST_CROP && resultCode == RESULT_OK) {
-            Uri imageUriResultCrop = UCrop.getOutput(data);
+            imageUriResultCrop = UCrop.getOutput(data);
 
             if (imageUriResultCrop != null) {
                 imageScan.setImageURI(imageUriResultCrop);
@@ -211,7 +212,7 @@ public class NewExperimentActivity extends AppCompatActivity {
         UCrop.Options options = new UCrop.Options();
 
         //Compress type
-        options.setCompressionQuality(70);
+        options.setCompressionQuality(IMAGE_COMPRESSION);
         options.setCompressionFormat(Bitmap.CompressFormat.JPEG);
 
         //Ui

@@ -23,7 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@id/rel_bottom"
-        android:layout_marginBottom="150dp"
+        android:layout_marginBottom="100dp"
         android:layout_centerHorizontal="true"
        app:tabBackground="@drawable/indicator_selector">
 
