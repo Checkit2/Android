@@ -102,6 +102,9 @@ public class NewExperimentActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (!age.isEmpty()){
+                    Toast.makeText(NewExperimentActivity.this, imageUriResultCrop.toString(), Toast.LENGTH_SHORT).show();
+                    Intent intent1=new Intent(NewExperimentActivity.this,LoadingActivity.class);
+                    startActivity(intent1);
                 }
             }
         });

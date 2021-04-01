@@ -7,6 +7,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.Manifest;
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -16,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.google.android.material.bottomsheet.BottomSheetDialog;
@@ -29,12 +31,15 @@ import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 import java.util.List;
 
 import ir.Peaky.checkit.activity.NewExperimentActivity;
+import ir.Peaky.checkit.activity.SplashActivity;
 import ir.Peaky.checkit.utils.ApplicationManager;
 import ir.Peaky.checkit.utils.RegularTextView;
 
 public class MainActivity extends AppCompatActivity {
+    Dialog dialog;
     Window window;
     View view;
+    RelativeLayout relGotIt;
     AppCompatImageView iconImagePicker,iconMenu;
     RegularTextView txtVersionName;
     NavigationView navigationView;
@@ -46,6 +51,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         statusbarColor();
         init();
+
+
+
+
+
+
+
 
         iconMenu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,6 +87,30 @@ public class MainActivity extends AppCompatActivity {
         iconImagePicker.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
+                dialog = new Dialog(MainActivity.this);
+                dialog.setContentView(R.layout.flash_dialog);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    dialog.getWindow().setBackgroundDrawable(getDrawable(R.drawable.shape_dialog));
+                }
+                dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+
+                dialog.setCancelable(false);
+                dialog.setCanceledOnTouchOutside(false);
+                relGotIt = dialog.findViewById(R.id.rel_try);
+                relGotIt.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+
+
+
+
+
+
                 bottomSheetDialog=new BottomSheetDialog(MainActivity.this,R.style.SheetDialog);
                 View sheetView= LayoutInflater.from(getApplicationContext()).inflate(R.layout.bottom_sheet_layout,
                         findViewById(R.id.bottom_sheet));
@@ -123,6 +159,7 @@ public class MainActivity extends AppCompatActivity {
                 });
 
                 bottomSheetDialog.show();
+                dialog.show();
             }
         });
 
