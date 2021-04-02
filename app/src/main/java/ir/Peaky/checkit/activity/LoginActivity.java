@@ -14,10 +14,25 @@ import android.view.WindowManager;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
+
 import ir.Peaky.checkit.MainActivity;
 import ir.Peaky.checkit.R;
 import ir.Peaky.checkit.config.PrefManager;
 import ir.Peaky.checkit.utils.CustomEditText;
+import ir.Peaky.checkit.webservice.Constants;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
     Window window;
@@ -25,7 +40,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     CustomEditText edtPhoneNumber;
     RelativeLayout relButton;
     RelativeLayout relError;
-    String txtPhoneNumber="";
+    String txtPhoneNumber = "";
     AppCompatCheckBox checkBox;
     PrefManager prefManager;
 
@@ -35,7 +50,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_login);
         statusbarColor();
         init();
-        prefManager=new PrefManager(getApplicationContext());
+        prefManager = new PrefManager(getApplicationContext());
         checkBox.setChecked(false);
         edtPhoneNumber.addTextChangedListener(new TextWatcher() {
             @Override
@@ -95,11 +110,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 } else {
                     edtPhoneNumber.setBackground(getResources().getDrawable(R.drawable.custom_input));
                     relError.setVisibility(View.INVISIBLE);
-                    prefManager.setLogin(true);
-                    prefManager.setPhoneNumber(txtPhoneNumber);
-                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                    startActivity(intent);
-                    finish();
+                    register();
                 }
                 break;
             case R.id.checkbox:
@@ -111,6 +122,40 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         }
 
+
+    }
+
+    public void register() {
+        prefManager.setPhoneNumber(txtPhoneNumber);
+        Map<String,String> params=new HashMap<>();
+        params.put("phone",prefManager.getPhoneNumber());
+        JSONObject parameters=new JSONObject(params);
+        JsonObjectRequest jsonObjectRequest=new JsonObjectRequest(Request.Method.POST, Constants.REGISTER_URL,
+                parameters, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    if (response.getInt("code")==201 || response.getInt("code")==200){
+                        prefManager.setLogin(true);
+                        JSONObject dataJsonObject=new JSONObject(String.valueOf(response.getJSONObject("data")));
+                        prefManager.setUserId(dataJsonObject.getInt("user_id"));
+                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }else
+                        Toast.makeText(LoginActivity.this, "مشکلی پیش آمده لطفا بعدا تلاش نمایید!", Toast.LENGTH_SHORT).show();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(LoginActivity.this, "مشکلی پیش آمده لطفا بعدا تلاش نمایید!", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+        Volley.newRequestQueue(this).add(jsonObjectRequest);
 
     }
 }

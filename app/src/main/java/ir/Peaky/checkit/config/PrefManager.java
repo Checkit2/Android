@@ -37,11 +37,20 @@ public class PrefManager {
     public boolean isLogin() {
         return pref.getBoolean("login", false);
     }
+
+
     public void setPhoneNumber(String phone){
         editor.putString("phone",phone);
         editor.commit();
     }
     public String getPhoneNumber(){
         return pref.getString("phone","null");
+    }
+    public void setUserId(int userId){
+        editor.putInt("user_id",userId);
+        editor.commit();
+    }
+    public int getUserId(){
+        return pref.getInt("user_id",404);
     }
 }

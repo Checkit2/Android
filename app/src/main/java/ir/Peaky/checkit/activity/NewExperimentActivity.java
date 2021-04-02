@@ -30,6 +30,7 @@ import com.yalantis.ucrop.UCrop;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.concurrent.TimeUnit;
 
 import ir.Peaky.checkit.R;
 import ir.Peaky.checkit.utils.CustomEditText;
@@ -46,7 +47,7 @@ public class NewExperimentActivity extends AppCompatActivity {
     RelativeLayout btnScan;
     private final int CODE_IMG_GALLERY = 1;
     public static final int REQUEST_IMAGE_CAPTURE = 0;
-    private final String SAMPLE_CROP_IMG_NAME = "sampleCropImg";
+    private final String SAMPLE_CROP_IMG_NAME = "androidimg";
     public static String fileName;
     private int IMAGE_COMPRESSION = 60;
     Uri imageUriResultCrop;
@@ -199,6 +200,8 @@ public class NewExperimentActivity extends AppCompatActivity {
 
 
     private void startCrop(@NonNull Uri uri) {
+
+
         String destinationFileName = SAMPLE_CROP_IMG_NAME;
         destinationFileName += ".jpg";
         UCrop uCrop = UCrop.of(uri, Uri.fromFile(new File(getCacheDir(), destinationFileName)));
