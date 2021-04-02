@@ -54,6 +54,7 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import ir.Peaky.checkit.R;
+import ir.Peaky.checkit.config.PrefManager;
 import ir.Peaky.checkit.utils.CustomEditText;
 import ir.Peaky.checkit.webservice.Constants;
 import ir.Peaky.checkit.webservice.VolleyMultipartRequest;
@@ -77,6 +78,7 @@ public class NewExperimentActivity extends AppCompatActivity {
     private boolean lockAspectRatio = false, setBitmapMaxWidthHeight = false;
     String imageUrl="";
     Bitmap bitmap;
+    PrefManager prefManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,6 +89,7 @@ public class NewExperimentActivity extends AppCompatActivity {
         Bundle bundle = intent.getExtras();
         init();
         setSpinner();
+        prefManager=new PrefManager(getApplicationContext());
 
 
         if (bundle != null) {
@@ -307,7 +310,8 @@ public class NewExperimentActivity extends AppCompatActivity {
         //    final String tags = editTextTags.getText().toString().trim();
 
         //our custom volley request
-        VolleyMultipartRequest volleyMultipartRequest = new VolleyMultipartRequest(Request.Method.POST, Constants.UPLOAD_IMAGE_URL + 5,
+        VolleyMultipartRequest volleyMultipartRequest = new VolleyMultipartRequest(Request.Method.POST, Constants.UPLOAD_IMAGE_URL +
+                prefManager.getUserId(),
                 new Response.Listener<NetworkResponse>() {
                     @Override
                     public void onResponse(NetworkResponse response) {
