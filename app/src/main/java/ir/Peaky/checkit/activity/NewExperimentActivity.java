@@ -7,6 +7,7 @@ import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatSpinner;
 import androidx.core.content.ContextCompat;
 
+import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.database.Cursor;
@@ -18,6 +19,7 @@ import android.provider.MediaStore;
 import android.provider.OpenableColumns;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
@@ -25,15 +27,36 @@ import android.widget.ArrayAdapter;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.NetworkResponse;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.Volley;
 import com.yalantis.ucrop.UCrop;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.ByteArrayOutputStream;
+import java.io.DataOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import ir.Peaky.checkit.R;
 import ir.Peaky.checkit.utils.CustomEditText;
+import ir.Peaky.checkit.webservice.Constants;
+import ir.Peaky.checkit.webservice.VolleyMultipartRequest;
 
 import static androidx.core.content.FileProvider.getUriForFile;
 
@@ -41,7 +64,7 @@ public class NewExperimentActivity extends AppCompatActivity {
     Window window;
     View view;
     AppCompatSpinner spinner;
-    AppCompatImageView imageScan,closeIcon;
+    AppCompatImageView imageScan, closeIcon;
     CustomEditText edtAge;
     String age = "";
     RelativeLayout btnScan;
@@ -52,6 +75,8 @@ public class NewExperimentActivity extends AppCompatActivity {
     private int IMAGE_COMPRESSION = 60;
     Uri imageUriResultCrop;
     private boolean lockAspectRatio = false, setBitmapMaxWidthHeight = false;
+    String imageUrl="";
+    Bitmap bitmap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,10 +127,12 @@ public class NewExperimentActivity extends AppCompatActivity {
         btnScan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!age.isEmpty()){
+                if (!age.isEmpty()) {
                     Toast.makeText(NewExperimentActivity.this, imageUriResultCrop.toString(), Toast.LENGTH_SHORT).show();
-                    Intent intent1=new Intent(NewExperimentActivity.this,LoadingActivity.class);
-                    startActivity(intent1);
+
+
+                        Intent intent1=new Intent(NewExperimentActivity.this,LoadingActivity.class);
+                        startActivity(intent1);
                 }
             }
         });
@@ -171,10 +198,17 @@ public class NewExperimentActivity extends AppCompatActivity {
 
             if (imageUriResultCrop != null) {
                 imageScan.setImageURI(imageUriResultCrop);
+                try {
+                    bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUriResultCrop);
+                    uploadBitmap(bitmap);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
             }
-        } else if(requestCode==REQUEST_IMAGE_CAPTURE && resultCode==RESULT_OK){
+        } else if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             cropImage(getCacheImagePath(fileName));
-        }else
+        } else
             finish();
     }
 
@@ -183,7 +217,7 @@ public class NewExperimentActivity extends AppCompatActivity {
         UCrop.Options options = new UCrop.Options();
         options.setCompressionQuality(IMAGE_COMPRESSION);
 
-        options.withAspectRatio(3,4);
+        options.withAspectRatio(3, 4);
         options.withMaxResultSize(800, 800);
 
         options.setFreeStyleCropEnabled(true);
@@ -201,12 +235,13 @@ public class NewExperimentActivity extends AppCompatActivity {
 
     private void startCrop(@NonNull Uri uri) {
 
+        String timeStamp = String.valueOf(TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis()));
 
-        String destinationFileName = SAMPLE_CROP_IMG_NAME;
-        destinationFileName += ".jpg";
-        UCrop uCrop = UCrop.of(uri, Uri.fromFile(new File(getCacheDir(), destinationFileName)));
-       // uCrop.withAspectRatio(1, 1);
-         uCrop.withAspectRatio(3,4);
+        fileName = SAMPLE_CROP_IMG_NAME + timeStamp;
+        fileName += ".jpg";
+        UCrop uCrop = UCrop.of(uri, Uri.fromFile(new File(getCacheDir(), fileName)));
+        // uCrop.withAspectRatio(1, 1);
+        uCrop.withAspectRatio(3, 4);
         // uCrop.useSourceImageAspectRatio();
         // uCrop.withAspectRatio(16,9);
         uCrop.withMaxResultSize(800, 800);
@@ -232,7 +267,7 @@ public class NewExperimentActivity extends AppCompatActivity {
         return options;
     }
 
-    private void takeCameraImage(){
+    private void takeCameraImage() {
         fileName = System.currentTimeMillis() + ".jpg";
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, getCacheImagePath(fileName));
@@ -258,4 +293,56 @@ public class NewExperimentActivity extends AppCompatActivity {
         returnCursor.close();
         return name;
     }
+
+
+    public byte[] getFileDataFromDrawable(Bitmap bitmap) {
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 80, byteArrayOutputStream);
+        return byteArrayOutputStream.toByteArray();
+    }
+
+    private void uploadBitmap(final Bitmap bitmap) {
+
+        //getting the tag from the edittext
+        //    final String tags = editTextTags.getText().toString().trim();
+
+        //our custom volley request
+        VolleyMultipartRequest volleyMultipartRequest = new VolleyMultipartRequest(Request.Method.POST, Constants.UPLOAD_IMAGE_URL + 5,
+                new Response.Listener<NetworkResponse>() {
+                    @Override
+                    public void onResponse(NetworkResponse response) {
+                        try {
+                            JSONObject obj = new JSONObject(new String(response.data));
+                            Toast.makeText(NewExperimentActivity.this, obj.getString("data"), Toast.LENGTH_SHORT).show();
+                            imageUrl=obj.getString("data");
+                            Log.e("", "");
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        //  Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_SHORT).show();
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("", error.getMessage());
+
+            }
+        }) {
+
+            /*
+             * Here we are passing image by renaming it with a unique name
+             * */
+            @Override
+            protected Map<String, DataPart> getByteData() {
+                Map<String, DataPart> params = new HashMap<>();
+                params.put("file", new DataPart(fileName, getFileDataFromDrawable(bitmap)));
+                return params;
+            }
+        };
+
+        //adding the request to volley
+        Volley.newRequestQueue(this).add(volleyMultipartRequest);
+    }
+
 }
