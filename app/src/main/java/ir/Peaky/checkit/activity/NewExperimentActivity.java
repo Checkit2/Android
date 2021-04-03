@@ -66,14 +66,14 @@ public class NewExperimentActivity extends AppCompatActivity {
     View view;
     AppCompatSpinner spinner;
     AppCompatImageView imageScan, closeIcon;
-    CustomEditText edtAge;
-    String age = "";
+    CustomEditText edtAge,edtTitle;
+    String age = "",checkTitle="";
     RelativeLayout btnScan;
     private final int CODE_IMG_GALLERY = 1;
     public static final int REQUEST_IMAGE_CAPTURE = 0;
     private final String SAMPLE_CROP_IMG_NAME = "androidimg";
     public static String fileName;
-    private int IMAGE_COMPRESSION = 60;
+    private int IMAGE_COMPRESSION = 100;
     Uri imageUriResultCrop;
     private boolean lockAspectRatio = false, setBitmapMaxWidthHeight = false;
     String imageUrl="";
@@ -130,12 +130,11 @@ public class NewExperimentActivity extends AppCompatActivity {
         btnScan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                checkTitle=edtTitle.getText().toString();
                 if (!age.isEmpty()) {
                     Toast.makeText(NewExperimentActivity.this, imageUriResultCrop.toString(), Toast.LENGTH_SHORT).show();
+                      uploadBitmap(bitmap);
 
-
-                        Intent intent1=new Intent(NewExperimentActivity.this,LoadingActivity.class);
-                        startActivity(intent1);
                 }
             }
         });
@@ -157,6 +156,7 @@ public class NewExperimentActivity extends AppCompatActivity {
         btnScan = findViewById(R.id.btn_scan);
         imageScan = findViewById(R.id.img_pic);
         closeIcon = findViewById(R.id.icon_close);
+        edtTitle=findViewById(R.id.edt_title);
     }
 
 
@@ -203,7 +203,7 @@ public class NewExperimentActivity extends AppCompatActivity {
                 imageScan.setImageURI(imageUriResultCrop);
                 try {
                     bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUriResultCrop);
-                    uploadBitmap(bitmap);
+
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -221,14 +221,14 @@ public class NewExperimentActivity extends AppCompatActivity {
         options.setCompressionQuality(IMAGE_COMPRESSION);
 
         options.withAspectRatio(3, 4);
-        options.withMaxResultSize(800, 800);
+        options.withMaxResultSize(1200, 1200);
 
         options.setFreeStyleCropEnabled(true);
         options.setToolbarTitle("ویرایش عکس");
 
 
         if (setBitmapMaxWidthHeight)
-            options.withMaxResultSize(800, 800);
+            options.withMaxResultSize(1200, 1200);
 
         UCrop.of(sourceUri, destinationUri)
                 .withOptions(options)
@@ -247,7 +247,7 @@ public class NewExperimentActivity extends AppCompatActivity {
         uCrop.withAspectRatio(3, 4);
         // uCrop.useSourceImageAspectRatio();
         // uCrop.withAspectRatio(16,9);
-        uCrop.withMaxResultSize(800, 800);
+        uCrop.withMaxResultSize(1200, 1200);
         uCrop.withOptions(getCropOption());
         uCrop.start(NewExperimentActivity.this);
     }
@@ -306,8 +306,7 @@ public class NewExperimentActivity extends AppCompatActivity {
 
     private void uploadBitmap(final Bitmap bitmap) {
 
-        //getting the tag from the edittext
-        //    final String tags = editTextTags.getText().toString().trim();
+
 
         //our custom volley request
         VolleyMultipartRequest volleyMultipartRequest = new VolleyMultipartRequest(Request.Method.POST, Constants.UPLOAD_IMAGE_URL +
@@ -317,19 +316,24 @@ public class NewExperimentActivity extends AppCompatActivity {
                     public void onResponse(NetworkResponse response) {
                         try {
                             JSONObject obj = new JSONObject(new String(response.data));
-                            Toast.makeText(NewExperimentActivity.this, obj.getString("data"), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(NewExperimentActivity.this, "لطفا کمی صبرکنید", Toast.LENGTH_SHORT).show();
                             imageUrl=obj.getString("data");
-                            Log.e("", "");
+                            Log.e("", response.toString());
+                            Intent intent1=new Intent(NewExperimentActivity.this,LoadingActivity.class);
+                            intent1.putExtra("imageUrl",imageUrl);
+                            intent1.putExtra("checkName",checkTitle);
+                            startActivity(intent1);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-                        //  Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_SHORT).show();
 
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.e("", error.getMessage());
+                Toast.makeText(NewExperimentActivity.this, "لطفا مجددا تلاش نمایید", Toast.LENGTH_SHORT).show();
+                finish();
 
             }
         }) {
