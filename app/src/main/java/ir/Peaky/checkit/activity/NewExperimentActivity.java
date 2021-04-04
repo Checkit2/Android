@@ -73,7 +73,7 @@ public class NewExperimentActivity extends AppCompatActivity {
     public static final int REQUEST_IMAGE_CAPTURE = 0;
     private final String SAMPLE_CROP_IMG_NAME = "androidimg";
     public static String fileName;
-    private int IMAGE_COMPRESSION = 100;
+    private int IMAGE_COMPRESSION = 95;
     Uri imageUriResultCrop;
     private boolean lockAspectRatio = false, setBitmapMaxWidthHeight = false;
     String imageUrl="";
@@ -221,14 +221,14 @@ public class NewExperimentActivity extends AppCompatActivity {
         options.setCompressionQuality(IMAGE_COMPRESSION);
 
         options.withAspectRatio(3, 4);
-        options.withMaxResultSize(1200, 1200);
+        options.withMaxResultSize(1100, 1100);
 
         options.setFreeStyleCropEnabled(true);
         options.setToolbarTitle("ویرایش عکس");
 
 
         if (setBitmapMaxWidthHeight)
-            options.withMaxResultSize(1200, 1200);
+            options.withMaxResultSize(1100, 1100);
 
         UCrop.of(sourceUri, destinationUri)
                 .withOptions(options)
@@ -247,7 +247,7 @@ public class NewExperimentActivity extends AppCompatActivity {
         uCrop.withAspectRatio(3, 4);
         // uCrop.useSourceImageAspectRatio();
         // uCrop.withAspectRatio(16,9);
-        uCrop.withMaxResultSize(1200, 1200);
+        uCrop.withMaxResultSize(1100, 1100);
         uCrop.withOptions(getCropOption());
         uCrop.start(NewExperimentActivity.this);
     }

@@ -103,6 +103,9 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         dialog.dismiss();
+                        Intent intent=new Intent(getApplicationContext(), NewExperimentActivity.class);
+                        intent.putExtra("camera",true);
+                        startActivity(intent);
                     }
                 });
 
@@ -127,10 +130,11 @@ public class MainActivity extends AppCompatActivity {
                             public void onPermissionsChecked(MultiplePermissionsReport multiplePermissionsReport) {
                                 // check if all permissions are granted
                                 if (multiplePermissionsReport.areAllPermissionsGranted()) {
+
                                     // do you work now
-                                    Intent intent=new Intent(getApplicationContext(), NewExperimentActivity.class);
-                                    intent.putExtra("camera",true);
-                                    startActivity(intent);
+                                    dialog.show();
+
+
                                 }
 
                                 // check for permanent denial of any permission
@@ -159,7 +163,7 @@ public class MainActivity extends AppCompatActivity {
                 });
 
                 bottomSheetDialog.show();
-                dialog.show();
+
             }
         });
 
