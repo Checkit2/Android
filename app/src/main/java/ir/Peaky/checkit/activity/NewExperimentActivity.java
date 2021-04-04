@@ -67,7 +67,7 @@ public class NewExperimentActivity extends AppCompatActivity {
     AppCompatSpinner spinner;
     AppCompatImageView imageScan, closeIcon;
     CustomEditText edtAge,edtTitle;
-    String age = "",checkTitle="";
+    String age = "",checkTitle=null;
     RelativeLayout btnScan;
     private final int CODE_IMG_GALLERY = 1;
     public static final int REQUEST_IMAGE_CAPTURE = 0;
@@ -132,6 +132,8 @@ public class NewExperimentActivity extends AppCompatActivity {
             public void onClick(View v) {
                 checkTitle=edtTitle.getText().toString();
                 if (!age.isEmpty()) {
+                    Toast.makeText(NewExperimentActivity.this, "لطفا کمی صبرکنید", Toast.LENGTH_SHORT).show();
+
 //                    Toast.makeText(NewExperimentActivity.this, imageUriResultCrop.toString(), Toast.LENGTH_SHORT).show();
                       uploadBitmap(bitmap);
 
@@ -326,8 +328,7 @@ public class NewExperimentActivity extends AppCompatActivity {
                     public void onResponse(NetworkResponse response) {
                         try {
                             JSONObject obj = new JSONObject(new String(response.data));
-                            Toast.makeText(NewExperimentActivity.this, "لطفا کمی صبرکنید", Toast.LENGTH_SHORT).show();
-                         //   imageUrl=obj.getString("data");
+                            imageUrl=obj.getString("data");
                             int t=obj.getInt("code");
                             Log.e("", response.toString());
                             Intent intent1=new Intent(NewExperimentActivity.this,LoadingActivity.class);

@@ -10,5 +10,6 @@ public class Constants {
     public static final String UPLOAD_IMAGE_URL=BASE_URL+"upload/";
     public static final String NEW_CHECK_URL=BASE_URL+"checks/new";
     public static final String GET_CHECKS_URL=BASE_URL+"checks/";
+    public static final String PUT_URL=BASE_URL+"check/update/";
 
 }

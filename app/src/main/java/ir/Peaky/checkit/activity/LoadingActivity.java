@@ -12,10 +12,12 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.RelativeLayout;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -46,10 +48,14 @@ public class LoadingActivity extends AppCompatActivity {
         prefManager=new PrefManager(getApplicationContext());
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
-        if (bundle!=null){
+
             imageUrl=bundle.getString("imageUrl");
-            checkTitle=bundle.getString("checkName");
-        }
+            if (bundle.getString("checkName")==null || bundle.getString("checkName")==""
+            || bundle.getString("checkName").isEmpty()) {
+                checkTitle = null;
+            }else
+                checkTitle=bundle.getString("checkName");
+
         cancelTxt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -95,7 +101,7 @@ public class LoadingActivity extends AppCompatActivity {
                     JSONObject dataJsonObject=response.getJSONObject("data");
                     Log.e("",dataJsonObject.toString());
                     Intent intent=new Intent(getApplicationContext(),ReviewActivity.class);
-                    intent.putExtra("data",dataJsonObject.toString());
+                    intent.putExtra("data1",dataJsonObject.toString());
                     startActivity(intent);
                     finish();
                 } catch (JSONException e) {
@@ -110,6 +116,10 @@ public class LoadingActivity extends AppCompatActivity {
 
             }
         });
+        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(
+                30000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));        Volley.newRequestQueue(getApplicationContext()).add(jsonObjectRequest);
 
     }
 

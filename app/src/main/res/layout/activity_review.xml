@@ -35,23 +35,686 @@
 
     </RelativeLayout>
 
-    <ir.Peaky.checkit.utils.RegularTextView
-        android:id="@+id/txt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/topBar"
+    <RelativeLayout
         android:layout_marginTop="5dp"
-        android:text="@string/review_desc"
-        android:lineSpacingExtra="6dp"/>
-
-    <androidx.recyclerview.widget.RecyclerView
+        android:layout_below="@id/topBar"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/txt"
-        android:layout_marginTop="25dp"
-        android:layout_above="@id/bottom_bar"/>
+        android:layout_above="@id/bottom_bar">
+
+        <ScrollView
+            android:layout_marginBottom="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ir.Peaky.checkit.utils.RegularTextView
+                    android:id="@+id/txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/review_desc"
+                    android:lineSpacingExtra="6dp"/>
+
+                <LinearLayout
+                    android:layout_marginTop="10dp"
+                    android:layout_below="@+id/txt"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layoutDirection="ltr"
+                        android:padding="10dp">
+
+
+
+                        <ir.Peaky.checkit.utils.BoldTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:text="title"
+                            android:textColor="@color/title_color"
+                            android:textStyle="bold"
+                            android:id="@+id/txt_key1"/>
+
+                        <ir.Peaky.checkit.utils.CustomEditText
+                            android:layout_below="@id/txt_key1"
+                            android:imeOptions="actionNext"
+                            android:singleLine="true"
+                            android:id="@+id/edt_value1"
+                            android:layout_marginTop="10dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:background="@drawable/custom_input"
+                            android:textSize="14sp"
+                            android:textColor="@color/title_color"
+                            android:padding="15dp"
+                            android:textAlignment="textStart"
+                            android:textColorHint="@color/button_def"
+                            />
+
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layoutDirection="ltr"
+                        android:padding="10dp">
+
+
+
+                        <ir.Peaky.checkit.utils.BoldTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:text="title"
+                            android:textColor="@color/title_color"
+                            android:textStyle="bold"
+                            android:id="@+id/txt_key2"/>
+
+                        <ir.Peaky.checkit.utils.CustomEditText
+                            android:layout_below="@id/txt_key2"
+                            android:imeOptions="actionNext"
+                            android:singleLine="true"
+                            android:id="@+id/edt_value2"
+                            android:layout_marginTop="10dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:background="@drawable/custom_input"
+                            android:textSize="14sp"
+                            android:textColor="@color/title_color"
+                            android:padding="15dp"
+                            android:textAlignment="textStart"
+                            android:textColorHint="@color/button_def"
+                            />
+
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layoutDirection="ltr"
+                        android:padding="10dp">
+
+
+
+                        <ir.Peaky.checkit.utils.BoldTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:text="title"
+                            android:textColor="@color/title_color"
+                            android:textStyle="bold"
+                            android:id="@+id/txt_key3"/>
+
+                        <ir.Peaky.checkit.utils.CustomEditText
+                            android:layout_below="@id/txt_key3"
+                            android:imeOptions="actionNext"
+                            android:singleLine="true"
+                            android:id="@+id/edt_value3"
+                            android:layout_marginTop="10dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:background="@drawable/custom_input"
+                            android:textSize="14sp"
+                            android:textColor="@color/title_color"
+                            android:padding="15dp"
+                            android:textAlignment="textStart"
+                            android:textColorHint="@color/button_def"
+                            />
+
+
+                    </RelativeLayout>
+
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layoutDirection="ltr"
+                        android:padding="10dp">
+
+
+
+                        <ir.Peaky.checkit.utils.BoldTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:text="title"
+                            android:textColor="@color/title_color"
+                            android:textStyle="bold"
+                            android:id="@+id/txt_key4"/>
+
+                        <ir.Peaky.checkit.utils.CustomEditText
+                            android:layout_below="@id/txt_key4"
+                            android:imeOptions="actionNext"
+                            android:singleLine="true"
+                            android:id="@+id/edt_value4"
+                            android:layout_marginTop="10dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:background="@drawable/custom_input"
+                            android:textSize="14sp"
+                            android:textColor="@color/title_color"
+                            android:padding="15dp"
+                            android:textAlignment="textStart"
+                            android:textColorHint="@color/button_def"
+                            />
+
+
+                    </RelativeLayout>
+
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layoutDirection="ltr"
+                        android:padding="10dp">
+
+
+
+                        <ir.Peaky.checkit.utils.BoldTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:text="title"
+                            android:textColor="@color/title_color"
+                            android:textStyle="bold"
+                            android:id="@+id/txt_key5"/>
+
+                        <ir.Peaky.checkit.utils.CustomEditText
+                            android:layout_below="@id/txt_key5"
+                            android:imeOptions="actionNext"
+                            android:singleLine="true"
+                            android:id="@+id/edt_value5"
+                            android:layout_marginTop="10dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:background="@drawable/custom_input"
+                            android:textSize="14sp"
+                            android:textColor="@color/title_color"
+                            android:padding="15dp"
+                            android:textAlignment="textStart"
+                            android:textColorHint="@color/button_def"
+                            />
+
+
+                    </RelativeLayout>
+
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layoutDirection="ltr"
+                        android:padding="10dp">
+
+
+
+                        <ir.Peaky.checkit.utils.BoldTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:text="title"
+                            android:textColor="@color/title_color"
+                            android:textStyle="bold"
+                            android:id="@+id/txt_key6"/>
+
+                        <ir.Peaky.checkit.utils.CustomEditText
+                            android:layout_below="@id/txt_key6"
+                            android:imeOptions="actionNext"
+                            android:singleLine="true"
+                            android:id="@+id/edt_value6"
+                            android:layout_marginTop="10dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:background="@drawable/custom_input"
+                            android:textSize="14sp"
+                            android:textColor="@color/title_color"
+                            android:padding="15dp"
+                            android:textAlignment="textStart"
+                            android:textColorHint="@color/button_def"
+                            />
+
+
+                    </RelativeLayout>
+
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layoutDirection="ltr"
+                        android:padding="10dp">
+
+
+
+                        <ir.Peaky.checkit.utils.BoldTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:text="title"
+                            android:textColor="@color/title_color"
+                            android:textStyle="bold"
+                            android:id="@+id/txt_key7"/>
+
+                        <ir.Peaky.checkit.utils.CustomEditText
+                            android:layout_below="@id/txt_key7"
+                            android:imeOptions="actionNext"
+                            android:singleLine="true"
+                            android:id="@+id/edt_value7"
+                            android:layout_marginTop="10dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:background="@drawable/custom_input"
+                            android:textSize="14sp"
+                            android:textColor="@color/title_color"
+                            android:padding="15dp"
+                            android:textAlignment="textStart"
+                            android:textColorHint="@color/button_def"
+                            />
+
+
+                    </RelativeLayout>
+
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layoutDirection="ltr"
+                        android:padding="10dp">
+
+
+
+                        <ir.Peaky.checkit.utils.BoldTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:text="title"
+                            android:textColor="@color/title_color"
+                            android:textStyle="bold"
+                            android:id="@+id/txt_key8"/>
+
+                        <ir.Peaky.checkit.utils.CustomEditText
+                            android:layout_below="@id/txt_key8"
+                            android:imeOptions="actionNext"
+                            android:singleLine="true"
+                            android:id="@+id/edt_value8"
+                            android:layout_marginTop="10dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:background="@drawable/custom_input"
+                            android:textSize="14sp"
+                            android:textColor="@color/title_color"
+                            android:padding="15dp"
+                            android:textAlignment="textStart"
+                            android:textColorHint="@color/button_def"
+                            />
+
+
+                    </RelativeLayout>
+
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layoutDirection="ltr"
+                        android:padding="10dp">
+
+
+
+                        <ir.Peaky.checkit.utils.BoldTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:text="title"
+                            android:textColor="@color/title_color"
+                            android:textStyle="bold"
+                            android:id="@+id/txt_key9"/>
+
+                        <ir.Peaky.checkit.utils.CustomEditText
+                            android:layout_below="@id/txt_key9"
+                            android:imeOptions="actionNext"
+                            android:singleLine="true"
+                            android:id="@+id/edt_value9"
+                            android:layout_marginTop="10dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:background="@drawable/custom_input"
+                            android:textSize="14sp"
+                            android:textColor="@color/title_color"
+                            android:padding="15dp"
+                            android:textAlignment="textStart"
+                            android:textColorHint="@color/button_def"
+                            />
+
+
+                    </RelativeLayout>
+
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layoutDirection="ltr"
+                        android:padding="10dp">
+
+
+
+                        <ir.Peaky.checkit.utils.BoldTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:text="title"
+                            android:textColor="@color/title_color"
+                            android:textStyle="bold"
+                            android:id="@+id/txt_key10"/>
+
+                        <ir.Peaky.checkit.utils.CustomEditText
+                            android:layout_below="@id/txt_key10"
+                            android:imeOptions="actionNext"
+                            android:singleLine="true"
+                            android:id="@+id/edt_value10"
+                            android:layout_marginTop="10dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:background="@drawable/custom_input"
+                            android:textSize="14sp"
+                            android:textColor="@color/title_color"
+                            android:padding="15dp"
+                            android:textAlignment="textStart"
+                            android:textColorHint="@color/button_def"
+                            />
+
+
+                    </RelativeLayout>
+
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layoutDirection="ltr"
+                        android:padding="10dp">
+
+
+
+                        <ir.Peaky.checkit.utils.BoldTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:text="title"
+                            android:textColor="@color/title_color"
+                            android:textStyle="bold"
+                            android:id="@+id/txt_key11"/>
+
+                        <ir.Peaky.checkit.utils.CustomEditText
+                            android:layout_below="@id/txt_key11"
+                            android:imeOptions="actionNext"
+                            android:singleLine="true"
+                            android:id="@+id/edt_value11"
+                            android:layout_marginTop="10dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:background="@drawable/custom_input"
+                            android:textSize="14sp"
+                            android:textColor="@color/title_color"
+                            android:padding="15dp"
+                            android:textAlignment="textStart"
+                            android:textColorHint="@color/button_def"
+                            />
+
+
+                    </RelativeLayout>
+
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layoutDirection="ltr"
+                        android:padding="10dp">
+
+
+
+                        <ir.Peaky.checkit.utils.BoldTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:text="title"
+                            android:textColor="@color/title_color"
+                            android:textStyle="bold"
+                            android:id="@+id/txt_key12"/>
+
+                        <ir.Peaky.checkit.utils.CustomEditText
+                            android:layout_below="@id/txt_key12"
+                            android:imeOptions="actionNext"
+                            android:singleLine="true"
+                            android:id="@+id/edt_value12"
+                            android:layout_marginTop="10dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:background="@drawable/custom_input"
+                            android:textSize="14sp"
+                            android:textColor="@color/title_color"
+                            android:padding="15dp"
+                            android:textAlignment="textStart"
+                            android:textColorHint="@color/button_def"
+                            />
+
+
+                    </RelativeLayout>
+
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layoutDirection="ltr"
+                        android:padding="10dp">
+
+
+
+                        <ir.Peaky.checkit.utils.BoldTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:text="title"
+                            android:textColor="@color/title_color"
+                            android:textStyle="bold"
+                            android:id="@+id/txt_key13"/>
+
+                        <ir.Peaky.checkit.utils.CustomEditText
+                            android:layout_below="@id/txt_key13"
+                            android:imeOptions="actionNext"
+                            android:singleLine="true"
+                            android:id="@+id/edt_value13"
+                            android:layout_marginTop="10dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:background="@drawable/custom_input"
+                            android:textSize="14sp"
+                            android:textColor="@color/title_color"
+                            android:padding="15dp"
+                            android:textAlignment="textStart"
+                            android:textColorHint="@color/button_def"
+                            />
+
+
+                    </RelativeLayout>
+
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layoutDirection="ltr"
+                        android:padding="10dp">
+
+
+
+                        <ir.Peaky.checkit.utils.BoldTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:text="title"
+                            android:textColor="@color/title_color"
+                            android:textStyle="bold"
+                            android:id="@+id/txt_key14"/>
+
+                        <ir.Peaky.checkit.utils.CustomEditText
+                            android:layout_below="@id/txt_key14"
+                            android:imeOptions="actionNext"
+                            android:singleLine="true"
+                            android:id="@+id/edt_value14"
+                            android:layout_marginTop="10dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:background="@drawable/custom_input"
+                            android:textSize="14sp"
+                            android:textColor="@color/title_color"
+                            android:padding="15dp"
+                            android:textAlignment="textStart"
+                            android:textColorHint="@color/button_def"
+                            />
+
+
+                    </RelativeLayout>
+
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layoutDirection="ltr"
+                        android:padding="10dp">
+
+
+
+                        <ir.Peaky.checkit.utils.BoldTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:text="title"
+                            android:textColor="@color/title_color"
+                            android:textStyle="bold"
+                            android:id="@+id/txt_key15"/>
+
+                        <ir.Peaky.checkit.utils.CustomEditText
+                            android:layout_below="@id/txt_key15"
+                            android:imeOptions="actionNext"
+                            android:singleLine="true"
+                            android:id="@+id/edt_value15"
+                            android:layout_marginTop="10dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:background="@drawable/custom_input"
+                            android:textSize="14sp"
+                            android:textColor="@color/title_color"
+                            android:padding="15dp"
+                            android:textAlignment="textStart"
+                            android:textColorHint="@color/button_def"
+                            />
+
+
+                    </RelativeLayout>
+
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layoutDirection="ltr"
+                        android:padding="10dp">
+
+
+
+                        <ir.Peaky.checkit.utils.BoldTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:text="title"
+                            android:textColor="@color/title_color"
+                            android:textStyle="bold"
+                            android:id="@+id/txt_key16"/>
+
+                        <ir.Peaky.checkit.utils.CustomEditText
+                            android:layout_below="@id/txt_key16"
+                            android:imeOptions="actionNext"
+                            android:singleLine="true"
+                            android:id="@+id/edt_value16"
+                            android:layout_marginTop="10dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:background="@drawable/custom_input"
+                            android:textSize="14sp"
+                            android:textColor="@color/title_color"
+                            android:padding="15dp"
+                            android:textAlignment="textStart"
+                            android:textColorHint="@color/button_def"
+                            />
+
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layoutDirection="ltr"
+                        android:padding="10dp">
+
+
+
+                        <ir.Peaky.checkit.utils.BoldTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:text="title"
+                            android:textColor="@color/title_color"
+                            android:textStyle="bold"
+                            android:id="@+id/txt_key17"/>
+
+                        <ir.Peaky.checkit.utils.CustomEditText
+                            android:layout_below="@id/txt_key17"
+                            android:imeOptions="actionNext"
+                            android:singleLine="true"
+                            android:id="@+id/edt_value17"
+                            android:layout_marginTop="10dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:background="@drawable/custom_input"
+                            android:textSize="14sp"
+                            android:textColor="@color/title_color"
+                            android:padding="15dp"
+                            android:textAlignment="textStart"
+                            android:textColorHint="@color/button_def"
+                            />
+
+
+                    </RelativeLayout>
+
+
+
+
+
+                </LinearLayout>
+
+
+            </RelativeLayout>
+
+
+
+        </ScrollView>
+
+
+
+    </RelativeLayout>
+
+
+
+
+
 
     <RelativeLayout
+        android:background="@drawable/button"
         android:id="@+id/bottom_bar"
         android:layout_marginBottom="10dp"
         android:layout_width="match_parent"
@@ -61,8 +724,8 @@
         <ir.Peaky.checkit.utils.BoldTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:textColor="@color/main"
+            android:textSize="16sp"
+            android:textColor="@color/white"
             android:textStyle="bold"
             android:text="دریافت تحلیل"
             android:layout_centerInParent="true"
