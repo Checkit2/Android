@@ -5,12 +5,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,6 +23,12 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.navigation.NavigationView;
 import com.karumi.dexter.Dexter;
@@ -28,33 +37,53 @@ import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 import java.util.List;
 
 import ir.Peaky.checkit.activity.AboutUsActivity;
 import ir.Peaky.checkit.activity.NewExperimentActivity;
 import ir.Peaky.checkit.activity.SplashActivity;
+import ir.Peaky.checkit.adapter.ChecksAdapter;
+import ir.Peaky.checkit.config.PrefManager;
+import ir.Peaky.checkit.model.CheckModel;
 import ir.Peaky.checkit.utils.ApplicationManager;
 import ir.Peaky.checkit.utils.RegularTextView;
+import ir.Peaky.checkit.webservice.Constants;
 
 public class MainActivity extends AppCompatActivity {
     Dialog dialog;
     Window window;
     View view;
-    RelativeLayout relGotIt;
+    RelativeLayout relGotIt,relBottom;
     AppCompatImageView iconImagePicker,iconMenu;
     RegularTextView txtVersionName;
     NavigationView navigationView;
     DrawerLayout drawerLayout;
+    PrefManager prefManager;
+    RecyclerView recyclerView;
     private BottomSheetDialog bottomSheetDialog;
+    private List<CheckModel> checksList;
+    RecyclerView.Adapter mAdapter;
+    private LinearLayoutManager linearLayoutManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         statusbarColor();
         init();
-
-
-
+        prefManager=new PrefManager(getApplicationContext());
+        checksList = new ArrayList<>();
+        mAdapter = new ChecksAdapter(getApplicationContext(),checksList);
+        linearLayoutManager = new LinearLayoutManager(this);
+        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.setAdapter(mAdapter);
+        getChecks();
 
 
 
@@ -177,6 +206,8 @@ public class MainActivity extends AppCompatActivity {
         drawerLayout=findViewById(R.id.drawer);
         iconMenu=findViewById(R.id.icon_menu);
         txtVersionName=findViewById(R.id.txt_version_name);
+        recyclerView=findViewById(R.id.recycler);
+        relBottom=findViewById(R.id.rel_bottom);
     }
 
 
@@ -188,6 +219,57 @@ public class MainActivity extends AppCompatActivity {
             view = getWindow().getDecorView();
             view.setSystemUiVisibility(view.getSystemUiVisibility() | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
         }
+    }
+
+
+    public void getChecks(){
+
+
+
+
+        JsonObjectRequest jsonObjectRequest=new JsonObjectRequest(Request.Method.GET, Constants.GET_CHECKS_URL
+                +prefManager.getUserId(),
+                null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                Log.e("","");
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.KITKAT) {
+                    try {
+                        JSONArray dataJsonArray=response.getJSONArray("data");
+                        if (dataJsonArray.length()>0){
+                            relBottom.setVisibility(View.VISIBLE);
+                        }else
+                            relBottom.setVisibility(View.GONE);
+                        Log.e("", String.valueOf(dataJsonArray.length()));
+                      //  if (dataJsonArray.length()>0){
+                            for (int i=0;i<=3;i++){
+                                JSONObject jsonObject=dataJsonArray.getJSONObject(i);
+
+                                CheckModel checkModel=new CheckModel();
+                                checkModel.setCheck_id(jsonObject.getInt("check_id"));
+                                checkModel.setCheck_name(jsonObject.getString("check_name"));
+                                checkModel.setCheck_result(jsonObject.getJSONObject("check_result"));
+                                checksList.add(checkModel);
+                            }
+
+                      //  }
+
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    mAdapter.notifyDataSetChanged();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("","");
+            }
+        });
+            Volley.newRequestQueue(this).add(jsonObjectRequest);
+
+
     }
 
 
