@@ -30,6 +30,7 @@ import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 
 import java.util.List;
 
+import ir.Peaky.checkit.activity.AboutUsActivity;
 import ir.Peaky.checkit.activity.NewExperimentActivity;
 import ir.Peaky.checkit.activity.SplashActivity;
 import ir.Peaky.checkit.utils.ApplicationManager;
@@ -76,6 +77,8 @@ public class MainActivity extends AppCompatActivity {
                         drawerLayout.closeDrawer(GravityCompat.START);
                         break;
                     case R.id.about_us:
+                        Intent intent=new Intent(getApplicationContext(), AboutUsActivity.class);
+                        startActivity(intent);
                         drawerLayout.closeDrawer(GravityCompat.START);
                         break;
                 }
