@@ -194,7 +194,16 @@ public class NewExperimentActivity extends AppCompatActivity {
         if (requestCode == CODE_IMG_GALLERY && resultCode == RESULT_OK) {
             Uri imageUri = data.getData();
             if (imageUri != null) {
-                startCrop(imageUri);
+                // if need crop image from gallery use startCrop function
+                //startCrop(imageUri);
+                try {
+                    bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
+                    imageScan.setImageURI(imageUri);
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
             }
         } else if (requestCode == UCrop.REQUEST_CROP && resultCode == RESULT_OK) {
             imageUriResultCrop = UCrop.getOutput(data);
