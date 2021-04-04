@@ -79,7 +79,7 @@ public class NewExperimentActivity extends AppCompatActivity {
     String imageUrl="";
     Bitmap bitmap;
     PrefManager prefManager;
-
+    Uri imageUri;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -132,7 +132,7 @@ public class NewExperimentActivity extends AppCompatActivity {
             public void onClick(View v) {
                 checkTitle=edtTitle.getText().toString();
                 if (!age.isEmpty()) {
-                    Toast.makeText(NewExperimentActivity.this, imageUriResultCrop.toString(), Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(NewExperimentActivity.this, imageUriResultCrop.toString(), Toast.LENGTH_SHORT).show();
                       uploadBitmap(bitmap);
 
                 }
@@ -192,15 +192,16 @@ public class NewExperimentActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == CODE_IMG_GALLERY && resultCode == RESULT_OK) {
-            Uri imageUri = data.getData();
+             imageUri = data.getData();
             if (imageUri != null) {
                 // if need crop image from gallery use startCrop function
-                //startCrop(imageUri);
+                startCrop(imageUri);
                 try {
-                    bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
-                    imageScan.setImageURI(imageUri);
+                    bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(),imageUri);
+                    imageScan.setImageBitmap(bitmap);
 
                 } catch (IOException e) {
+                    Log.e("","");
                     e.printStackTrace();
                 }
 
@@ -251,14 +252,14 @@ public class NewExperimentActivity extends AppCompatActivity {
 
         fileName = SAMPLE_CROP_IMG_NAME + timeStamp;
         fileName += ".jpg";
-        UCrop uCrop = UCrop.of(uri, Uri.fromFile(new File(getCacheDir(), fileName)));
+      /*  UCrop uCrop = UCrop.of(uri, Uri.fromFile(new File(getCacheDir(), fileName)));
         // uCrop.withAspectRatio(1, 1);
         uCrop.withAspectRatio(3, 4);
         // uCrop.useSourceImageAspectRatio();
         // uCrop.withAspectRatio(16,9);
         uCrop.withMaxResultSize(1100, 1100);
         uCrop.withOptions(getCropOption());
-        uCrop.start(NewExperimentActivity.this);
+        uCrop.start(NewExperimentActivity.this);*/
     }
 
     private UCrop.Options getCropOption() {
@@ -326,13 +327,16 @@ public class NewExperimentActivity extends AppCompatActivity {
                         try {
                             JSONObject obj = new JSONObject(new String(response.data));
                             Toast.makeText(NewExperimentActivity.this, "لطفا کمی صبرکنید", Toast.LENGTH_SHORT).show();
-                            imageUrl=obj.getString("data");
+                         //   imageUrl=obj.getString("data");
+                            int t=obj.getInt("code");
                             Log.e("", response.toString());
                             Intent intent1=new Intent(NewExperimentActivity.this,LoadingActivity.class);
                             intent1.putExtra("imageUrl",imageUrl);
                             intent1.putExtra("checkName",checkTitle);
                             startActivity(intent1);
                         } catch (JSONException e) {
+                            Log.e("", e.getMessage());
+
                             e.printStackTrace();
                         }
 

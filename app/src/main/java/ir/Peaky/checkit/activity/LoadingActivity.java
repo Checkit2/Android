@@ -6,6 +6,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -16,6 +17,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
@@ -55,6 +57,8 @@ public class LoadingActivity extends AppCompatActivity {
             }
         });
 
+        newCheck();
+
 
 
 
@@ -87,10 +91,22 @@ public class LoadingActivity extends AppCompatActivity {
             @Override
             public void onResponse(JSONObject response) {
 
+                try {
+                    JSONObject dataJsonObject=response.getJSONObject("data");
+                    Log.e("",dataJsonObject.toString());
+                    Intent intent=new Intent(getApplicationContext(),ReviewActivity.class);
+                    intent.putExtra("data",dataJsonObject.toString());
+                    startActivity(intent);
+                    finish();
+                } catch (JSONException e) {
+                    Log.e("",e.getMessage());
+                    e.printStackTrace();
+                }
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                Log.e("",error.getMessage());
 
             }
         });
