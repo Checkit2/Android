@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" android:layoutDirection="rtl"
+    android:background="@color/white"
+
+    >
+
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/error"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/ic_error" />
+
+
+
+    <ir.Peaky.checkit.utils.RegularTextView
+        android:textAlignment="center"
+        android:lineSpacingExtra="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/title_color"
+        android:layout_below="@id/error"
+        android:textSize="14sp"
+        android:text="آیا مطمئنید که میخواید اسکن تصویر را لغو کنید؟"
+        android:id="@+id/msg_error"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"/>
+
+    <LinearLayout
+        android:layout_below="@id/msg_error"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="40dp"
+        >
+
+        <RelativeLayout
+            android:id="@+id/rel_yes"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="58dp"
+            android:background="@color/red_error">
+
+            <ir.Peaky.checkit.utils.BoldTextView
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:text="@string/yes"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="10dp"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rel_no"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="58dp"
+            android:background="@color/white">
+
+            <ir.Peaky.checkit.utils.BoldTextView
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/title_color"
+                android:text="@string/no"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="10dp"/>
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+
+
+
+
+</RelativeLayout>

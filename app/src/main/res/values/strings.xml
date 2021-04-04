@@ -52,6 +52,8 @@
     <string name="continue_txt">ادامه</string>
     <string name="using_flash">استفاده از چراغ فلش</string>
     <string name="gotit">فهمیدم</string>
+    <string name="no">خیر</string>
+    <string name="yes">بله</string>
 
 
 </resources>
