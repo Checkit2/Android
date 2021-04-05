@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -22,6 +23,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -36,6 +38,7 @@ public class ReviewActivity extends AppCompatActivity {
     Window window;
     View view;
     RelativeLayout btn;
+    int checkId;
     JSONObject jsonObject;
     CustomEditText editText1,editText2,editText3,editText4,editText5,editText6,
             editText7,editText8,editText9,editText10,editText11,editText12,editText13,
@@ -137,6 +140,7 @@ public class ReviewActivity extends AppCompatActivity {
             jsonObject=new JSONObject(getIntent().getStringExtra("data1"));
             JSONArray keyJsonArray=jsonObject.getJSONArray("keys");
             JSONArray valueJsonArray=jsonObject.getJSONArray("values");
+            checkId=jsonObject.getInt("check_id");
             for (int i=0;i<keyJsonArray.length();i++){
                 keys.add(keyJsonArray.getString(i));
             }
@@ -175,16 +179,19 @@ public class ReviewActivity extends AppCompatActivity {
         params.put("values",jsonArray1);
         JSONObject jsonObject=new JSONObject(params);
         JsonObjectRequest jsonObjectRequest=new JsonObjectRequest(Request.Method.PUT, Constants.PUT_URL
-                +prefManager.getUserId(),
+                +checkId,
                 jsonObject, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
           //      Log.e("",response.toString());
+                Log.e("","");
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-         //       Log.e("", error.getMessage());
+                Log.e("", error.getMessage());
+
+                Toast.makeText(ReviewActivity.this, "مشکل پیش آمده لطفا مجددا تلاش نمایید", Toast.LENGTH_SHORT).show();
             }
         });
         jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(
@@ -201,18 +208,23 @@ public class ReviewActivity extends AppCompatActivity {
 
     public void checkFunction(int i, BoldTextView textView,CustomEditText editText){
 
-        if (!keys.get(i).isEmpty() || !values.get(i).isEmpty()){
-            textView.setText(keys.get(i));
-            editText.setText(values.get(i));
+        if (keys.size()>i) {
+            if (!keys.get(i).isEmpty() || !values.get(i).isEmpty()) {
+                textView.setText(keys.get(i));
+                editText.setText(values.get(i));
 
+            }
         }else {
             textView.setVisibility(View.GONE);
             editText.setVisibility(View.GONE);
         }
-
     }
 
+    public void setValues(int i,CustomEditText editText){
 
+
+
+    }
 
 
 
