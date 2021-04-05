@@ -28,6 +28,7 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -203,8 +204,7 @@ public class NewExperimentActivity extends AppCompatActivity {
                     imageScan.setImageBitmap(bitmap);
 
                 } catch (IOException e) {
-                    Log.e("","");
-                    e.printStackTrace();
+                //    e.printStackTrace();
                 }
 
             }
@@ -217,7 +217,7 @@ public class NewExperimentActivity extends AppCompatActivity {
                     bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUriResultCrop);
 
                 } catch (IOException e) {
-                    e.printStackTrace();
+              //      e.printStackTrace();
                 }
 
             }
@@ -330,24 +330,20 @@ public class NewExperimentActivity extends AppCompatActivity {
                             JSONObject obj = new JSONObject(new String(response.data));
                             imageUrl=obj.getString("data");
                             int t=obj.getInt("code");
-                            Log.e("", response.toString());
                             Intent intent1=new Intent(NewExperimentActivity.this,LoadingActivity.class);
                             intent1.putExtra("imageUrl",imageUrl);
                             intent1.putExtra("checkName",checkTitle);
                             startActivity(intent1);
                         } catch (JSONException e) {
-                            Log.e("", e.getMessage());
 
-                            e.printStackTrace();
+                     //       e.printStackTrace();
                         }
 
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.e("", error.getMessage());
                 Toast.makeText(NewExperimentActivity.this, "لطفا مجددا تلاش نمایید", Toast.LENGTH_SHORT).show();
-                finish();
 
             }
         }) {
@@ -364,6 +360,10 @@ public class NewExperimentActivity extends AppCompatActivity {
         };
 
         //adding the request to volley
+        volleyMultipartRequest.setRetryPolicy(new DefaultRetryPolicy(
+                10000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         Volley.newRequestQueue(this).add(volleyMultipartRequest);
     }
 

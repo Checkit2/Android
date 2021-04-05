@@ -45,6 +45,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ir.Peaky.checkit.activity.AboutUsActivity;
+import ir.Peaky.checkit.activity.ContactUsActivity;
 import ir.Peaky.checkit.activity.NewExperimentActivity;
 import ir.Peaky.checkit.activity.SplashActivity;
 import ir.Peaky.checkit.adapter.ChecksAdapter;
@@ -108,6 +109,11 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.about_us:
                         Intent intent=new Intent(getApplicationContext(), AboutUsActivity.class);
                         startActivity(intent);
+                        drawerLayout.closeDrawer(GravityCompat.START);
+                        break;
+                    case R.id.contact_us:
+                        Intent intent1=new Intent(getApplicationContext(), ContactUsActivity.class);
+                        startActivity(intent1);
                         drawerLayout.closeDrawer(GravityCompat.START);
                         break;
                 }

@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.RelativeLayout;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -28,6 +29,7 @@ import ir.Peaky.checkit.R;
 import ir.Peaky.checkit.config.PrefManager;
 import ir.Peaky.checkit.utils.BoldTextView;
 import ir.Peaky.checkit.utils.CustomEditText;
+import ir.Peaky.checkit.utils.RegularTextView;
 import ir.Peaky.checkit.webservice.Constants;
 
 public class ReviewActivity extends AppCompatActivity {
@@ -141,48 +143,27 @@ public class ReviewActivity extends AppCompatActivity {
             for (int i=0;i<valueJsonArray.length();i++){
                 values.add(valueJsonArray.getString(i));
             }
-            Log.e("HiMIHI",keys.get(0));
-            textView1.setText(keys.get(0).toString());
-            textView2.setText(keys.get(1).toString());
-            textView3.setText(keys.get(2).toString());
-            textView4.setText(keys.get(3).toString());
-            textView5.setText(keys.get(4).toString());
-            textView6.setText(keys.get(5).toString());
-            textView7.setText(keys.get(6).toString());
-            textView8.setText(keys.get(7).toString());
-            textView9.setText(keys.get(8).toString());
-            textView10.setText(keys.get(9).toString());
-            textView11.setText(keys.get(10).toString());
-            textView12.setText(keys.get(11).toString());
-            textView13.setText(keys.get(12).toString());
-            textView14.setText(keys.get(13).toString());
-            textView15.setText(keys.get(14).toString());
-            textView16.setText(keys.get(15).toString());
-            textView17.setText(keys.get(16).toString());
+           checkFunction(0,textView1,editText1);
+           checkFunction(1,textView2,editText2);
+           checkFunction(2,textView3,editText3);
+           checkFunction(3,textView4,editText4);
+           checkFunction(4,textView5,editText5);
+           checkFunction(5,textView6,editText6);
+           checkFunction(6,textView7,editText7);
+           checkFunction(7,textView8,editText8);
+           checkFunction(8,textView9,editText9);
+           checkFunction(9,textView10,editText10);
+           checkFunction(10,textView11,editText11);
+           checkFunction(11,textView12,editText12);
+           checkFunction(12,textView13,editText13);
+           checkFunction(13,textView14,editText14);
+           checkFunction(14,textView15,editText15);
+           checkFunction(15,textView16,editText16);
+           checkFunction(16,textView17,editText17);
 
-
-            editText1.setText(values.get(0).toString());
-            editText2.setText(values.get(1).toString());
-            editText3.setText(values.get(2).toString());
-            editText4.setText(values.get(3).toString());
-            editText5.setText(values.get(4).toString());
-            editText6.setText(values.get(5).toString());
-            editText7.setText(values.get(6).toString());
-            editText8.setText(values.get(7).toString());
-            editText9.setText(values.get(8).toString());
-            editText10.setText(values.get(9).toString());
-            editText11.setText(values.get(10).toString());
-            editText12.setText(values.get(11).toString());
-            editText13.setText(values.get(12).toString());
-            editText14.setText(values.get(13).toString());
-            editText15.setText(values.get(14).toString());
-            editText16.setText(values.get(15).toString());
-            editText17.setText(values.get(16).toString());
-
-
-            Log.e("",keyJsonArray.toString());
+           // Log.e("",keyJsonArray.toString());
         } catch (JSONException e) {
-            e.printStackTrace();
+          //  e.printStackTrace();
         }
     }
 
@@ -198,17 +179,36 @@ public class ReviewActivity extends AppCompatActivity {
                 jsonObject, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                Log.e("",response.toString());
+          //      Log.e("",response.toString());
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.e("", error.getMessage());
+         //       Log.e("", error.getMessage());
             }
         });
+        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(
+                8000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         Volley.newRequestQueue(this).add(jsonObjectRequest);
 
 
+
+    }
+
+
+
+    public void checkFunction(int i, BoldTextView textView,CustomEditText editText){
+
+        if (!keys.get(i).isEmpty() || !values.get(i).isEmpty()){
+            textView.setText(keys.get(i));
+            editText.setText(values.get(i));
+
+        }else {
+            textView.setVisibility(View.GONE);
+            editText.setVisibility(View.GONE);
+        }
 
     }
 

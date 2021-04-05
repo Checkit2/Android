@@ -99,27 +99,28 @@ public class LoadingActivity extends AppCompatActivity {
 
                 try {
                     JSONObject dataJsonObject=response.getJSONObject("data");
-                    Log.e("",dataJsonObject.toString());
+       //             Log.e("",dataJsonObject.toString());
                     Intent intent=new Intent(getApplicationContext(),ReviewActivity.class);
                     intent.putExtra("data1",dataJsonObject.toString());
                     startActivity(intent);
                     finish();
                 } catch (JSONException e) {
-                    Log.e("",e.getMessage());
-                    e.printStackTrace();
+         //           Log.e("",e.getMessage());
+          //          e.printStackTrace();
                 }
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.e("",error.getMessage());
+   //             Log.e("",error.getMessage());
 
             }
         });
         jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(
-                30000,
+                20000,
                 DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));        Volley.newRequestQueue(getApplicationContext()).add(jsonObjectRequest);
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        Volley.newRequestQueue(getApplicationContext()).add(jsonObjectRequest);
 
     }
 

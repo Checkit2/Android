@@ -15,6 +15,7 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -145,7 +146,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     }else
                         Toast.makeText(LoginActivity.this, "مشکلی پیش آمده لطفا بعدا تلاش نمایید!", Toast.LENGTH_SHORT).show();
                 } catch (JSONException e) {
-                    e.printStackTrace();
+                 //   e.printStackTrace();
                 }
             }
         }, new Response.ErrorListener() {
@@ -155,6 +156,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
             }
         });
+        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(
+                5000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         Volley.newRequestQueue(this).add(jsonObjectRequest);
 
     }
