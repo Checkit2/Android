@@ -16,7 +16,6 @@ import ir.Peaky.checkit.utils.RegularTextView;
 public class AboutUsActivity extends AppCompatActivity {
 
     AppCompatImageView iconBack;
-    RegularTextView mail;
     Window window;
     View view;
     @Override
@@ -32,19 +31,12 @@ public class AboutUsActivity extends AppCompatActivity {
                 finish();
             }
         });
-        mail.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent emailIntent = new Intent(Intent.ACTION_SENDTO);
-                emailIntent.setData(Uri.parse("mailto:sup.checkit@gmail.com"));
-                startActivity(Intent.createChooser(emailIntent, "Send feedback"));
-            }
-        });
+
     }
 
     private void init() {
         iconBack=findViewById(R.id.icon_back);
-        mail=findViewById(R.id.mail);
+
     }
 
     public void statusbarColor(){

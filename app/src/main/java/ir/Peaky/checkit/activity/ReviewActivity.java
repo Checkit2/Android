@@ -2,6 +2,7 @@ package ir.Peaky.checkit.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -49,12 +50,14 @@ public class ReviewActivity extends AppCompatActivity {
     List<String> keys=new ArrayList<String>();
     List<String> values=new ArrayList<String>();
     PrefManager prefManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_review);
         statusbarColor();
         init();
+        checkId=getIntent().getIntExtra("check_id",0);
         prefManager=new PrefManager(getApplicationContext());
         getItems();
         btn.setOnClickListener(new View.OnClickListener() {
@@ -140,7 +143,6 @@ public class ReviewActivity extends AppCompatActivity {
             jsonObject=new JSONObject(getIntent().getStringExtra("data1"));
             JSONArray keyJsonArray=jsonObject.getJSONArray("keys");
             JSONArray valueJsonArray=jsonObject.getJSONArray("values");
-            checkId=jsonObject.getInt("check_id");
             for (int i=0;i<keyJsonArray.length();i++){
                 keys.add(keyJsonArray.getString(i));
             }
@@ -185,13 +187,25 @@ public class ReviewActivity extends AppCompatActivity {
             public void onResponse(JSONObject response) {
           //      Log.e("",response.toString());
                 Log.e("","");
+                try {
+                    JSONObject data=new JSONObject(String.valueOf(response.getJSONObject("data")));
+                    JSONObject data1=new JSONObject(String.valueOf(data.getJSONObject("data")));
+                    JSONObject checkResult=new JSONObject(String.valueOf(data1.getJSONObject("check_result")));
+                    String analysis=checkResult.getString("analysis");
+                    Intent intent=new Intent(ReviewActivity.this,AnalysisActivity.class);
+                    intent.putExtra("analysis",analysis);
+                    startActivity(intent);
+                    finish();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.e("", error.getMessage());
-
-                Toast.makeText(ReviewActivity.this, "مشکل پیش آمده لطفا مجددا تلاش نمایید", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ReviewActivity.this, "مشکلی پیش آمده لطفا مجددا تلاش کنید", Toast.LENGTH_SHORT).show();
             }
         });
         jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(

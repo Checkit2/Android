@@ -99,9 +99,11 @@ public class LoadingActivity extends AppCompatActivity {
 
                 try {
                     JSONObject dataJsonObject=response.getJSONObject("data");
+                    int checkId=response.getInt("check_id");
        //             Log.e("",dataJsonObject.toString());
                     Intent intent=new Intent(getApplicationContext(),ReviewActivity.class);
                     intent.putExtra("data1",dataJsonObject.toString());
+                    intent.putExtra("check_id",checkId);
                     startActivity(intent);
                     finish();
                 } catch (JSONException e) {

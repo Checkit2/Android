@@ -16,7 +16,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activity.ContactUsActivity"></activity>
+        <activity android:name=".activity.AnalysisActivity"></activity>
+        <activity android:name=".activity.ContactUsActivity" />
         <activity android:name=".activity.ReviewActivity" />
         <activity android:name=".activity.AboutUsActivity" />
         <activity
