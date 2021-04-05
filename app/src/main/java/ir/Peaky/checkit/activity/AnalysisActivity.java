@@ -9,6 +9,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import ir.Peaky.checkit.MainActivity;
 import ir.Peaky.checkit.R;
 import ir.Peaky.checkit.utils.RegularTextView;
@@ -18,24 +21,33 @@ public class AnalysisActivity extends AppCompatActivity {
     View view;
     RegularTextView analysisTxt;
     AppCompatImageView iconClose;
+    JSONObject jsonObject;
+    String analysis = "مشکلی پیش آمده";
+    boolean flag=false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_analysis);
         Bundle extras = getIntent().getExtras();
-        String analysis = "مشکلی پیش آمده";
+
         statusbarColor();
+        flag=extras.getBoolean("flag");
         if (extras != null) {
             analysis = extras.getString("analysis");
         }
         init();
+        getAnalysis();
         analysisTxt.setText(analysis);
         iconClose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(getApplicationContext(),MainActivity.class);
-                startActivity(intent);
-                finish();
+                if (flag){
+                    finish();
+                }else {
+                    Intent intent=new Intent(getApplicationContext(),MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
             }
         });
     }
@@ -54,11 +66,29 @@ public class AnalysisActivity extends AppCompatActivity {
         }
     }
 
+    public void getAnalysis(){
+
+        if (flag) {
+
+            try {
+                jsonObject = new JSONObject(getIntent().getStringExtra("check_result"));
+                analysis = jsonObject.getString("analysis");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+    }
     @Override
     public void onBackPressed() {
-        Intent intent=new Intent(getApplicationContext(),MainActivity.class);
-        startActivity(intent);
-        finish();
+
+        if (flag){
+            finish();
+        }else {
+            Intent intent=new Intent(getApplicationContext(),MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
     }
 }
 

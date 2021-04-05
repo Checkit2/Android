@@ -48,14 +48,115 @@
             android:layout_height="match_parent">
 
             <ir.Peaky.checkit.utils.RegularTextView
+                android:id="@+id/about"
                 android:lineSpacingExtra="7dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="14sp"
                 android:textColor="@color/title_color"
-                android:text="@string/lorem"
+                android:text="اپلیکیشن چکیت حاصل تفکر و تلاش تیم 4 نفره ما هستش که با هدف تحول و سرعت بخشیدن به پروسه های درمانی و به ویژه در زمان کرونا خلق شده است. تلاش ما بر این است که در آینده ای نه چندان دور بتوانیم به طور گسترده ای اپلیکیشن را توسعه دهیم."
                 android:layout_marginTop="10dp"
                 />
+
+            <RelativeLayout
+                android:id="@+id/rel1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/about"
+                android:layout_marginTop="30dp">
+
+                <ir.Peaky.checkit.utils.BoldTextView
+                    android:id="@+id/amir"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:textColor="@color/title_color"
+                    android:text="امیر محمد جباری : "/>
+
+                <ir.Peaky.checkit.utils.RegularTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@+id/amir"
+                    android:text="Android Developer"
+                    android:textColor="@color/title_color"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rel2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rel1"
+                android:layout_marginTop="10dp">
+
+                <ir.Peaky.checkit.utils.BoldTextView
+                    android:id="@+id/awmir"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:textColor="@color/title_color"
+                    android:text="امیرحسین میدانی : "/>
+
+                <ir.Peaky.checkit.utils.RegularTextView
+                    android:textAlignment="textEnd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@+id/awmir"
+                    android:text="Backend Developer"
+                    android:textColor="@color/title_color"/>
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/rel3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rel2"
+                android:layout_marginTop="10dp">
+
+                <ir.Peaky.checkit.utils.BoldTextView
+                    android:id="@+id/tourani"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:textColor="@color/title_color"
+                    android:text="محمد رضا تورانی : "/>
+
+                <ir.Peaky.checkit.utils.RegularTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@+id/tourani"
+                    android:text="OpenCv"
+                    android:textColor="@color/title_color"/>
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/rel4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rel3"
+                android:layout_marginTop="10dp">
+
+                <ir.Peaky.checkit.utils.BoldTextView
+                    android:id="@+id/ali"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:textColor="@color/title_color"
+                    android:text="علی قدیانی : "/>
+
+                <ir.Peaky.checkit.utils.RegularTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@+id/ali"
+                    android:text="UI UX Desginer"
+                    android:textColor="@color/title_color"/>
+            </RelativeLayout>
+
+
+
+
+
 
         </RelativeLayout>
 
