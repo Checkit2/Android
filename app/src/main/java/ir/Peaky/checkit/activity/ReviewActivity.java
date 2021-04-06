@@ -204,7 +204,7 @@ public class ReviewActivity extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.e("", error.getMessage());
+              //  Log.e("", error.getMessage());
                 Toast.makeText(ReviewActivity.this, "مشکلی پیش آمده لطفا مجددا تلاش کنید", Toast.LENGTH_SHORT).show();
             }
         });

@@ -8,7 +8,9 @@
     android:paddingEnd="20dp"
     android:paddingStart="20dp"
     android:layoutDirection="rtl"
-    tools:context=".activity.AnalysisActivity">
+    tools:context=".activity.GuideActivity">
+
+
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -19,7 +21,7 @@
         <androidx.appcompat.widget.AppCompatImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/ic_close"
+            android:background="@drawable/ic_back"
             android:layout_centerVertical="true"
             android:layout_alignParentEnd="true"
             android:id="@+id/icon_close"/>
@@ -27,7 +29,7 @@
         <ir.Peaky.checkit.utils.BoldTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="تحلیل آزمایش شما"
+            android:text="@string/help_title"
             android:textSize="20sp"
             android:textStyle="bold"
             android:layout_centerVertical="true"
@@ -35,36 +37,41 @@
 
     </RelativeLayout>
 
+    <ir.Peaky.checkit.utils.RegularTextView
+        android:lineSpacingExtra="7dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:textColor="@color/title_color"
+        android:layout_below="@id/topBar"
+        android:layout_centerHorizontal="true"
+        android:textAlignment="textStart"
+        android:layout_marginTop="30dp"
+        android:id="@+id/text_help_1"
+        android:text="@string/help_1" />
+
     <androidx.appcompat.widget.AppCompatImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/ic_analysis"
+        android:layout_below="@id/text_help_1"
         android:layout_centerHorizontal="true"
-        android:layout_below="@id/topBar"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
         android:id="@+id/img"/>
 
-    <ScrollView
-        android:layout_marginBottom="30dp"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+
+    <ir.Peaky.checkit.utils.RegularTextView
+        android:lineSpacingExtra="7dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:textColor="@color/title_color"
         android:layout_below="@id/img"
-        android:layout_marginTop="37dp">
-
-        <ir.Peaky.checkit.utils.RegularTextView
-            android:lineSpacingExtra="8dp"
-            android:id="@+id/txt_analysis"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="14sp"
-            android:textColor="@color/title_color"
-            android:layout_below="@id/img"
-            android:layout_marginTop="70dp"/>
-
-
-    </ScrollView>
-
-
+        android:layout_centerHorizontal="true"
+        android:textAlignment="textStart"
+        android:layout_marginTop="30dp"
+        android:id="@+id/text_help_2"
+        android:text="@string/help_2" />
 
 
 

@@ -54,7 +54,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="14sp"
                 android:textColor="@color/title_color"
-                android:text="اپلیکیشن چکیت حاصل تفکر و تلاش تیم 4 نفره ما هستش که با هدف تحول و سرعت بخشیدن به پروسه های درمانی و به ویژه در زمان کرونا خلق شده است. تلاش ما بر این است که در آینده ای نه چندان دور بتوانیم به طور گسترده ای اپلیکیشن را توسعه دهیم."
+                android:text="اپلیکیشن چک کیت حاصل تفکر و تلاش تیم 4 نفره ما هستش که با هدف تحول و سرعت بخشیدن به پروسه های درمانی و به ویژه در زمان کرونا خلق شده است. تلاش ما بر این است که در آینده ای نه چندان دور بتوانیم به طور گسترده ای اپلیکیشن را توسعه دهیم."
                 android:layout_marginTop="10dp"
                 />
 
@@ -119,7 +119,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="14sp"
                     android:textColor="@color/title_color"
-                    android:text="محمد رضا تورانی : "/>
+                    android:text="محمدرضا تورانی : "/>
 
                 <ir.Peaky.checkit.utils.RegularTextView
                     android:layout_width="wrap_content"

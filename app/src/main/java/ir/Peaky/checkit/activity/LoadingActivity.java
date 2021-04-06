@@ -96,6 +96,7 @@ public class LoadingActivity extends AppCompatActivity {
                 parameters, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
+                Log.e("","");
 
                 try {
                     JSONObject dataJsonObject=response.getJSONObject("data");
@@ -114,12 +115,12 @@ public class LoadingActivity extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-   //             Log.e("",error.getMessage());
+                Log.e("",error.getMessage());
 
             }
         });
         jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(
-                20000,
+                100000,
                 DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         Volley.newRequestQueue(getApplicationContext()).add(jsonObjectRequest);

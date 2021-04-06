@@ -46,6 +46,7 @@ import java.util.List;
 
 import ir.Peaky.checkit.activity.AboutUsActivity;
 import ir.Peaky.checkit.activity.ContactUsActivity;
+import ir.Peaky.checkit.activity.GuideActivity;
 import ir.Peaky.checkit.activity.NewExperimentActivity;
 import ir.Peaky.checkit.activity.SplashActivity;
 import ir.Peaky.checkit.adapter.ChecksAdapter;
@@ -104,6 +105,8 @@ public class MainActivity extends AppCompatActivity {
                 int id=item.getItemId();
                 switch (id){
                     case R.id.help:
+                        Intent intent2=new Intent(getApplicationContext(), GuideActivity.class);
+                        startActivity(intent2);
                         drawerLayout.closeDrawer(GravityCompat.START);
                         break;
                     case R.id.about_us:
@@ -280,6 +283,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        finish();
+        finishAffinity();
     }
 }

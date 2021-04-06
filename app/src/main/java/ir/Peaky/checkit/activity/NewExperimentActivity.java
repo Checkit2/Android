@@ -69,7 +69,7 @@ public class NewExperimentActivity extends AppCompatActivity {
     AppCompatImageView imageScan, closeIcon;
     CustomEditText edtAge,edtTitle;
     String age = "",checkTitle=null;
-    RelativeLayout btnScan;
+    RelativeLayout btnScan,relVis;
     private final int CODE_IMG_GALLERY = 1;
     public static final int REQUEST_IMAGE_CAPTURE = 0;
     private final String SAMPLE_CROP_IMG_NAME = "androidimg";
@@ -91,6 +91,7 @@ public class NewExperimentActivity extends AppCompatActivity {
         init();
         setSpinner();
         prefManager=new PrefManager(getApplicationContext());
+        relVis.setVisibility(View.GONE);
 
 
         if (bundle != null) {
@@ -133,6 +134,7 @@ public class NewExperimentActivity extends AppCompatActivity {
             public void onClick(View v) {
                 checkTitle=edtTitle.getText().toString();
                 if (!age.isEmpty()) {
+                    relVis.setVisibility(View.VISIBLE);
                     Toast.makeText(NewExperimentActivity.this, "لطفا کمی صبرکنید", Toast.LENGTH_SHORT).show();
 
 //                    Toast.makeText(NewExperimentActivity.this, imageUriResultCrop.toString(), Toast.LENGTH_SHORT).show();
@@ -160,6 +162,7 @@ public class NewExperimentActivity extends AppCompatActivity {
         imageScan = findViewById(R.id.img_pic);
         closeIcon = findViewById(R.id.icon_close);
         edtTitle=findViewById(R.id.edt_title);
+        relVis=findViewById(R.id.rel_vis);
     }
 
 
@@ -367,4 +370,9 @@ public class NewExperimentActivity extends AppCompatActivity {
         Volley.newRequestQueue(this).add(volleyMultipartRequest);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        relVis.setVisibility(View.GONE);
+    }
 }
