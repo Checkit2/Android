@@ -16,7 +16,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activity.GuideActivity"></activity>
+        <activity android:name=".activity.SeeAllChecksActivity"></activity>
+        <activity android:name=".activity.GuideActivity" />
         <activity android:name=".activity.AnalysisActivity" />
         <activity android:name=".activity.ContactUsActivity" />
         <activity android:name=".activity.ReviewActivity" />
@@ -36,8 +37,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".MainActivity" />
+        <activity android:name=".MainActivity" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

@@ -48,6 +48,7 @@ import ir.Peaky.checkit.activity.AboutUsActivity;
 import ir.Peaky.checkit.activity.ContactUsActivity;
 import ir.Peaky.checkit.activity.GuideActivity;
 import ir.Peaky.checkit.activity.NewExperimentActivity;
+import ir.Peaky.checkit.activity.SeeAllChecksActivity;
 import ir.Peaky.checkit.activity.SplashActivity;
 import ir.Peaky.checkit.adapter.ChecksAdapter;
 import ir.Peaky.checkit.config.PrefManager;
@@ -62,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
     View view;
     RelativeLayout relGotIt,relBottom;
     AppCompatImageView iconImagePicker,iconMenu;
-    RegularTextView txtVersionName;
+    RegularTextView txtVersionName,txtSeeAll;
     NavigationView navigationView;
     DrawerLayout drawerLayout;
     PrefManager prefManager;
@@ -71,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
     private List<CheckModel> checksList;
     RecyclerView.Adapter mAdapter;
     private LinearLayoutManager linearLayoutManager;
+    JSONArray dataJsonArray;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -208,6 +210,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        txtSeeAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getApplicationContext(), SeeAllChecksActivity.class);
+                intent.putExtra("dataArray",dataJsonArray.toString());
+                startActivity(intent);
+            }
+        });
+
     }
     public void init(){
         iconImagePicker=findViewById(R.id.icon_camera);
@@ -217,6 +228,7 @@ public class MainActivity extends AppCompatActivity {
         txtVersionName=findViewById(R.id.txt_version_name);
         recyclerView=findViewById(R.id.recycler);
         relBottom=findViewById(R.id.rel_bottom);
+        txtSeeAll=findViewById(R.id.see_all);
     }
 
 
@@ -244,7 +256,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.e("","");
                 if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.KITKAT) {
                     try {
-                        JSONArray dataJsonArray=response.getJSONArray("data");
+                         dataJsonArray=response.getJSONArray("data");
                         if (dataJsonArray.length()>0){
                             relBottom.setVisibility(View.VISIBLE);
                         }else

@@ -102,15 +102,21 @@
                 android:orientation="horizontal"
                 android:gravity="center">
 
-                <androidx.appcompat.widget.AppCompatCheckBox
+                <RelativeLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/checkbox"
-                    android:checked="true"
-                    android:buttonTint="@color/main"
-                    />
+                    android:layout_height="wrap_content">
+                    <androidx.appcompat.widget.AppCompatCheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/checkbox"
+                        android:checked="true"
+                        android:buttonTint="@color/main"
+                        />
+                </RelativeLayout>
+
 
                 <ir.Peaky.checkit.utils.RegularTextView
+                    android:layout_marginStart="20dp"
                     android:id="@+id/rules"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
