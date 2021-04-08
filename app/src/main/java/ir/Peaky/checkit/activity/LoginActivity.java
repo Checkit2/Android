@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatCheckBox;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
@@ -34,6 +35,7 @@ import ir.Peaky.checkit.MainActivity;
 import ir.Peaky.checkit.R;
 import ir.Peaky.checkit.config.PrefManager;
 import ir.Peaky.checkit.utils.CustomEditText;
+import ir.Peaky.checkit.utils.RegularTextView;
 import ir.Peaky.checkit.webservice.Constants;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
@@ -45,6 +47,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     String txtPhoneNumber = "";
     AppCompatCheckBox checkBox;
     PrefManager prefManager;
+    RegularTextView txtRules;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,6 +81,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         });
         relButton.setOnClickListener(this);
         checkBox.setOnClickListener(this);
+        txtRules.setOnClickListener(this);
 
 
     }
@@ -87,6 +91,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         relButton = findViewById(R.id.button);
         relError = findViewById(R.id.rel_error);
         checkBox = findViewById(R.id.checkbox);
+        txtRules=findViewById(R.id.rules);
     }
 
     public void statusbarColor() {
@@ -121,6 +126,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                 } else
                     relButton.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_def));
+            case R.id.rules:
+                String url = Constants.BASE_URL+"privacy";
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(url));
+                startActivity(i);
 
         }
 

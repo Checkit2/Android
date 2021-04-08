@@ -111,13 +111,13 @@
                     />
 
                 <ir.Peaky.checkit.utils.RegularTextView
+                    android:id="@+id/rules"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="14sp"
-                    android:textColor="@color/main"
-                    android:textAlignment="center"
                     android:text="@string/rules"
-                    android:id="@+id/rules"/>
+                    android:textAlignment="center"
+                    android:textColor="@color/main"
+                    android:textSize="14sp" />
 
             </LinearLayout>
 
