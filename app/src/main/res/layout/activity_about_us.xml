@@ -149,7 +149,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_toEndOf="@+id/ali"
-                    android:text="UI UX Desginer"
+                    android:text="UI UX Designer"
                     android:textColor="@color/title_color"/>
             </RelativeLayout>
 

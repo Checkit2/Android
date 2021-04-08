@@ -45,21 +45,23 @@
         android:id="@+id/img"/>
 
     <ScrollView
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="50dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/img"
-        android:layout_marginTop="37dp">
+        android:layout_marginTop="50dp">
 
         <ir.Peaky.checkit.utils.RegularTextView
-            android:lineSpacingExtra="8dp"
+            android:layout_marginBottom="10dp"
+            android:textAlignment="textStart"
+            android:lineSpacingExtra="12dp"
             android:id="@+id/txt_analysis"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="14sp"
             android:textColor="@color/title_color"
             android:layout_below="@id/img"
-            android:layout_marginTop="70dp"/>
+            android:layout_marginTop="20dp"/>
 
 
     </ScrollView>

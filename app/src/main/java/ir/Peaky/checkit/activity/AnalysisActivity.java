@@ -22,7 +22,7 @@ public class AnalysisActivity extends AppCompatActivity {
     RegularTextView analysisTxt;
     AppCompatImageView iconClose;
     JSONObject jsonObject;
-    String analysis = "مشکلی پیش آمده";
+    String analysis = "";
     boolean flag=false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +37,12 @@ public class AnalysisActivity extends AppCompatActivity {
         }
         init();
         getAnalysis();
-        analysisTxt.setText(analysis);
+        if(analysis.length()>=5){
+            analysisTxt.setText(analysis);
+
+        }else{
+            analysisTxt.setText("تحلیلی از آزمایش شما وجود ندارد \n لطفا مججدا تلاش نمایید");
+        }
         iconClose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
