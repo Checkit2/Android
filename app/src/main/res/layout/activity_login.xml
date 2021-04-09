@@ -116,7 +116,7 @@
 
 
                 <ir.Peaky.checkit.utils.RegularTextView
-                    android:layout_marginStart="20dp"
+                    android:layout_marginStart="10dp"
                     android:id="@+id/rules"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

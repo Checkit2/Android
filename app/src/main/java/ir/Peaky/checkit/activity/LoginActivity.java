@@ -126,11 +126,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                 } else
                     relButton.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_def));
+                break;
             case R.id.rules:
                 String url = Constants.BASE_URL+"privacy";
                 Intent i = new Intent(Intent.ACTION_VIEW);
                 i.setData(Uri.parse(url));
                 startActivity(i);
+                break;
         }
 
 
