@@ -37,41 +37,59 @@
 
     </RelativeLayout>
 
-    <ir.Peaky.checkit.utils.RegularTextView
-        android:lineSpacingExtra="7dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="14sp"
-        android:textColor="@color/title_color"
-        android:layout_below="@id/topBar"
-        android:layout_centerHorizontal="true"
-        android:textAlignment="textStart"
-        android:layout_marginTop="30dp"
-        android:id="@+id/text_help_1"
-        android:text="@string/help_1" />
-
-    <androidx.appcompat.widget.AppCompatImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/text_help_1"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        android:id="@+id/img"/>
+    <ScrollView
+        android:layout_marginTop="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/topBar">
 
 
-    <ir.Peaky.checkit.utils.RegularTextView
-        android:lineSpacingExtra="7dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="14sp"
-        android:textColor="@color/title_color"
-        android:layout_below="@id/img"
-        android:layout_centerHorizontal="true"
-        android:textAlignment="textStart"
-        android:layout_marginTop="30dp"
-        android:id="@+id/text_help_2"
-        android:text="@string/help_2" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+
+            <ir.Peaky.checkit.utils.RegularTextView
+                android:lineSpacingExtra="7dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="@color/title_color"
+                android:layout_centerHorizontal="true"
+                android:textAlignment="textStart"
+                android:id="@+id/text_help_1"
+                android:text="@string/help_1" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:background="@drawable/sample_img"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_below="@id/text_help_1"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:id="@+id/img"/>
+
+
+            <ir.Peaky.checkit.utils.RegularTextView
+                android:lineSpacingExtra="7dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="@color/title_color"
+                android:layout_below="@id/img"
+                android:layout_centerHorizontal="true"
+                android:textAlignment="textStart"
+                android:layout_marginTop="30dp"
+                android:id="@+id/text_help_2"
+                android:text="@string/help_2"
+                android:layout_marginBottom="10dp"/>
+
+
+
+        </RelativeLayout>
+    </ScrollView>
 
 
 
