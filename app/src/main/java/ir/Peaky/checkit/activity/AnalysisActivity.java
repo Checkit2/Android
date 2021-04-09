@@ -41,7 +41,7 @@ public class AnalysisActivity extends AppCompatActivity {
             analysisTxt.setText(analysis);
 
         }else{
-            analysisTxt.setText("تحلیلی از آزمایش شما وجود ندارد \n لطفا مججدا تلاش نمایید");
+            analysisTxt.setText("تحلیلی از آزمایش شما وجود ندارد \n لطفا مجددا تلاش نمایید");
         }
         iconClose.setOnClickListener(new View.OnClickListener() {
             @Override
