@@ -74,7 +74,7 @@ public class NewExperimentActivity extends AppCompatActivity {
     public static final int REQUEST_IMAGE_CAPTURE = 0;
     private final String SAMPLE_CROP_IMG_NAME = "androidimg";
     public static String fileName;
-    private int IMAGE_COMPRESSION = 95;
+    private int IMAGE_COMPRESSION = 100;
     Uri imageUriResultCrop;
     private boolean lockAspectRatio = false, setBitmapMaxWidthHeight = false;
     String imageUrl="";
