@@ -149,10 +149,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             public void onResponse(JSONObject response) {
                 try {
                     if (response.getInt("code")==201 || response.getInt("code")==200){
-                        prefManager.setLogin(true);
                         JSONObject dataJsonObject=new JSONObject(String.valueOf(response.getJSONObject("data")));
                         prefManager.setUserId(dataJsonObject.getInt("user_id"));
                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        prefManager.setLogin(true);
                         startActivity(intent);
                         finish();
                     }else
